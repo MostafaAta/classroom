@@ -13,7 +13,7 @@ public class Course implements Serializable
 	private String name1;
 	private Boolean isPreRequest;
 	@ManyToOne(fetch = FetchType.LAZY)
-	Instructor instructor; // not sure from that annotation
+	private Instructor instructor; // not sure from that annotation
 
 	public Integer getId()
 	{
