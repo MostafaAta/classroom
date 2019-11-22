@@ -3,16 +3,18 @@
         "-//Hibernate/Hibernate Configuration DTD//EN"
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-  <session-factory>
-    <property name="connection.url">jdbc:mysql://localhost:3306/virtual_classroom?serverTimezone=Europe/Paris</property>
-    <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-    <property name="hibernate.current_session_context_class">thread</property>
-    <property name="connection.username">root</property>
-    <property name="connection.password"/>
-    <property name="hibernate.hbm2ddl.auto">update</property>
-    <property name="show_sql">true</property>
-    <property name="format_sql">true</property>
-    <mapping class="entities.Student"></mapping>
-  </session-factory>
+    <session-factory>
+        <property name="connection.url">jdbc:mysql://localhost:3306/virtual_classroom?serverTimezone=Europe/Paris</property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.current_session_context_class">thread</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password"/>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="show_sql">true</property>
+        <property name="format_sql">true</property>
+        <mapping class="entities.Student"></mapping>
+        <mapping class="entities.Course"></mapping>
+        <mapping class="entities.Instructor"></mapping>
+    </session-factory>
 </hibernate-configuration>
