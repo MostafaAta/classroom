@@ -11,6 +11,7 @@ import java.util.Objects;
 @Entity
 public class Student
 {
+	// student entity
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
