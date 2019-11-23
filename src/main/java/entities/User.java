@@ -2,7 +2,6 @@ package entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
 
 @Entity
 @Table(name = "User")
@@ -11,10 +10,7 @@ public class User implements Serializable
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@Column(name = "first_name")
-	private String firstName;
-	@Column(name = "last_name")
-	private String lastName;
+	private Name name;
 	private String email;
 
 	public String getEmail()
@@ -37,47 +33,14 @@ public class User implements Serializable
 		this.id = id;
 	}
 
-	public String getFirstName()
+	public Name getName()
 	{
-		return firstName;
+		return name;
 	}
 
-	public void setFirstName(String firstName)
+	public void setName(Name name)
 	{
-		this.firstName = firstName;
-	}
-
-	public String getLastName()
-	{
-		return lastName;
-	}
-
-	public void setLastName(String lastName)
-	{
-		this.lastName = lastName;
-	}
-
-	@Override
-	public String toString()
-	{
-		return "User{" + "id=" + id + ", firstName='" + firstName + '\'' + ", lastName='" + lastName + '\'' + '}';
-	}
-
-	@Override
-	public boolean equals(Object o)
-	{
-		if (this == o)
-			return true;
-		if (o == null || getClass() != o.getClass())
-			return false;
-		User user = (User) o;
-		return Objects.equals(id, user.id) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName);
-	}
-
-	@Override
-	public int hashCode()
-	{
-		return Objects.hash(id, firstName, lastName);
+		this.name = name;
 	}
 }
 

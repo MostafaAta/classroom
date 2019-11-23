@@ -8,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Objects;
 
 @Entity
 public class Student implements Serializable
@@ -17,8 +16,7 @@ public class Student implements Serializable
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String firstName;
-	private String lastName;
+	private Name name;
 	private String email;
 	private Gender gender;
 	private BigDecimal gpa;
@@ -43,24 +41,14 @@ public class Student implements Serializable
 		this.id = id;
 	}
 
-	public String getFirstName()
+	public Name getName()
 	{
-		return firstName;
+		return name;
 	}
 
-	public void setFirstName(String firstName)
+	public void setName(Name name)
 	{
-		this.firstName = firstName;
-	}
-
-	public String getLastName()
-	{
-		return lastName;
-	}
-
-	public void setLastName(String lastName)
-	{
-		this.lastName = lastName;
+		this.name = name;
 	}
 
 	public String getEmail()
@@ -83,28 +71,4 @@ public class Student implements Serializable
 		this.gender = gender;
 	}
 
-	@Override
-	public boolean equals(Object o)
-	{
-		if (this == o)
-			return true;
-		if (o == null || getClass() != o.getClass())
-			return false;
-		Student student = (Student) o;
-		return Objects.equals(id, student.id) && Objects.equals(firstName, student.firstName) && Objects.equals(lastName, student.lastName) && Objects
-				.equals(email, student.email) && gender == student.gender;
-	}
-
-	@Override
-	public int hashCode()
-	{
-		return Objects.hash(id, firstName, lastName, email, gender);
-	}
-
-	@Override
-	public String toString()
-	{
-		return "Student{" + "id=" + id + ", firstName='" + firstName + '\'' + ", lastName='" + lastName + '\'' + ", email='" + email + '\''
-				+ ", gender=" + gender + '}';
-	}
 }
