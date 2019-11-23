@@ -1,10 +1,8 @@
 package entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -17,6 +15,18 @@ public class Instructor implements Serializable
 	private String address;
 	private String phone;
 	private String email;
+	@OneToMany(mappedBy = "instructor")
+	private List<Course> courses;
+
+	public List<Course> getCourses()
+	{
+		return courses;
+	}
+
+	public void setCourses(List<Course> course)
+	{
+		this.courses = course;
+	}
 
 	public Integer getId()
 	{

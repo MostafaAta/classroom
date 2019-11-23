@@ -10,10 +10,21 @@ public class Course implements Serializable
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String name1;
+	private String name;
 	private Boolean isPreRequest;
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Instructor instructor; // not sure from that annotation
+	private String code;
+	@ManyToOne
+	private Instructor instructor;
+
+	public String getCode()
+	{
+		return code;
+	}
+
+	public void setCode(String code)
+	{
+		this.code = code;
+	}
 
 	public Integer getId()
 	{
@@ -25,14 +36,14 @@ public class Course implements Serializable
 		this.id = id;
 	}
 
-	public String getName1()
+	public String getName()
 	{
-		return name1;
+		return name;
 	}
 
-	public void setName1(String name1)
+	public void setName(String name1)
 	{
-		this.name1 = name1;
+		this.name = name1;
 	}
 
 	public Boolean getPreRequest()
@@ -58,7 +69,7 @@ public class Course implements Serializable
 	@Override
 	public String toString()
 	{
-		return "Course{" + "id=" + id + ", name1='" + name1 + '\'' + ", isPreRequest=" + isPreRequest + ", instructor=" + instructor + '}';
+		return "Course{" + "id=" + id + ", name1='" + name + '\'' + ", isPreRequest=" + isPreRequest + ", instructor=" + instructor + '}';
 	}
 
 	@Override
@@ -69,13 +80,13 @@ public class Course implements Serializable
 		if (o == null || getClass() != o.getClass())
 			return false;
 		Course course = (Course) o;
-		return Objects.equals(id, course.id) && Objects.equals(name1, course.name1) && Objects.equals(isPreRequest, course.isPreRequest) && Objects
+		return Objects.equals(id, course.id) && Objects.equals(name, course.name) && Objects.equals(isPreRequest, course.isPreRequest) && Objects
 				.equals(instructor, course.instructor);
 	}
 
 	@Override
 	public int hashCode()
 	{
-		return Objects.hash(id, name1, isPreRequest, instructor);
+		return Objects.hash(id, name, isPreRequest, instructor);
 	}
 }
