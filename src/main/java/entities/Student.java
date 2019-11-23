@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
@@ -20,6 +21,17 @@ public class Student implements Serializable
 	private String lastName;
 	private String email;
 	private Gender gender;
+	private BigDecimal gpa;
+
+	public BigDecimal getGpa()
+	{
+		return gpa;
+	}
+
+	public void setGpa(BigDecimal gpa)
+	{
+		this.gpa = gpa;
+	}
 
 	public Integer getId()
 	{
