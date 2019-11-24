@@ -17,5 +17,7 @@
         <mapping class="entities.Course"/>
         <mapping class="entities.Instructor"/>
         <mapping class="entities.User"/>
+        <mapping class="entities.CourseRating"/>
+        <mapping class="entities.CourseRegistration"/>
     </session-factory>
 </hibernate-configuration>
