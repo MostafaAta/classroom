@@ -16,27 +16,27 @@ public class BusinessLogicCore
 		HibernateDBManager.buildSessionFactory();
 	}
 
-	public <T> T add(Class<T> obj) throws Exception
+	public <T> T add(T obj) throws Exception
 	{
 		return commonRepo.add(obj);
 	}
 
-	public <T> T edit(Class<T> obj) throws Exception
+	public <T> T edit(T obj) throws Exception
 	{
 		return commonRepo.edit(obj);
 	}
 
-	public <T> void delete(Class<T> obj) throws Exception
+	public <T> void delete(T obj) throws Exception
 	{
 		commonRepo.delete(obj);
 	}
 
-	public <T> T find(Class<T> obj) throws Exception
+	public <T> T find(T obj) throws Exception
 	{
 		return commonRepo.find(obj);
 	}
 
-	public <T> List<T> findAll(Class<T> obj) throws Exception
+	public <T> List<T> findAll(T obj) throws Exception
 	{
 		return commonRepo.findAll(obj);
 	}
