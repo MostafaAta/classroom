@@ -17,19 +17,25 @@ public class DomainTestMain
 			HibernateDBManager.setDbConfigFileName(hibernateConfigFile);
 			HibernateDBManager.buildSessionFactory();
 			BusinessLogicCore blCore = new BusinessLogicCore();
-			Student student = new Student();
-			student.setEmail("mostafa.atta@gmail");
-			student.setGender(Gender.Male);
-			student.setGpa(new BigDecimal(2.8));
-			Name name = new Name();
-			name.setFirstName("Mostafa");
-			name.setLastName("Atta");
-			student.setName(name);
+			Student student = addStudent();
 			blCore.add(student);
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
+	}
+
+	private static Student addStudent()
+	{
+		Student student = new Student();
+		student.setEmail("mostafa.atta@gmail");
+		student.setGender(Gender.Male);
+		student.setGpa(new BigDecimal(2.8));
+		Name name = new Name();
+		name.setFirstName("Mostafa");
+		name.setLastName("Atta");
+		student.setName(name);
+		return student;
 	}
 }
