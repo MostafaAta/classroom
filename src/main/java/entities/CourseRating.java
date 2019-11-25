@@ -11,15 +11,15 @@ import java.math.BigDecimal;
 public class CourseRating implements Serializable
 {
 	@EmbeddedId
-	CourseRatingKey id;
+	private CourseRatingKey id;
 	@ManyToOne
 	@MapsId("student_id")
 	@JoinColumn(name = "student_id")
-	Student student;
+	private Student student;
 	@ManyToOne
 	@MapsId("course_id")
 	@JoinColumn(name = "course_id")
-	Course course;
+	private Course course;
 	private BigDecimal rating;
 
 	public CourseRatingKey getId()
