@@ -15,7 +15,6 @@ public class DomainTestMain
 		{
 			String hibernateConfigFile = "hibernate.cfg.xml";
 			HibernateDBManager.setDbConfigFileName(hibernateConfigFile);
-			HibernateDBManager.buildSessionFactory();
 			BusinessLogicCore blCore = new BusinessLogicCore();
 			Student student = addStudent();
 			blCore.add(student);
@@ -29,12 +28,12 @@ public class DomainTestMain
 	private static Student addStudent()
 	{
 		Student student = new Student();
-		student.setEmail("mostafa.atta@gmail");
+		student.setEmail("ahmed.atta@gmail");
 		student.setGender(Gender.Male);
-		student.setGpa(new BigDecimal(2.8));
+		student.setGpa(new BigDecimal(3.0));
 		CompositeName name = new CompositeName();
-		name.setFirstName("Mostafa");
-		name.setLastName("Atta");
+		name.setFirstName("Ahmed");
+		name.setLastName("Ali");
 		student.setName(name);
 		return student;
 	}
