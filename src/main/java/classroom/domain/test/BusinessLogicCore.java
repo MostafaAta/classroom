@@ -1,43 +1,43 @@
 package classroom.domain.test;
 
 import classroom.dal.hibernate.HibernateDBManager;
-import classroom.domain.Impl.EnrollModuleImpl;
-import classroom.domain.entities.EnrollModule;
+import classroom.domain.Impl.CommonRepoImpl;
+import classroom.domain.entities.CommonRepo;
 
 import java.util.List;
 
 public class BusinessLogicCore
 {
-	private EnrollModule enrollModule;
+	private CommonRepo commonRepo;
 
 	public BusinessLogicCore() throws Exception
 	{
-		enrollModule = new EnrollModuleImpl();
+		commonRepo = new CommonRepoImpl();
 		HibernateDBManager.buildSessionFactory();
 	}
 
 	public <T> T add(Class<T> obj) throws Exception
 	{
-		return enrollModule.add(obj);
+		return commonRepo.add(obj);
 	}
 
 	public <T> T edit(Class<T> obj) throws Exception
 	{
-		return enrollModule.edit(obj);
+		return commonRepo.edit(obj);
 	}
 
 	public <T> void delete(Class<T> obj) throws Exception
 	{
-		enrollModule.delete(obj);
+		commonRepo.delete(obj);
 	}
 
 	public <T> T find(Class<T> obj) throws Exception
 	{
-		return enrollModule.find(obj);
+		return commonRepo.find(obj);
 	}
 
 	public <T> List<T> findAll(Class<T> obj) throws Exception
 	{
-		return enrollModule.findAll(obj);
+		return commonRepo.findAll(obj);
 	}
 }

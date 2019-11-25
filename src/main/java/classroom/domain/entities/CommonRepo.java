@@ -2,7 +2,7 @@ package classroom.domain.entities;
 
 import java.util.List;
 
-public interface EnrollModule
+public interface CommonRepo
 {
 	<T> T add(Class<T> obj) throws Exception;
 

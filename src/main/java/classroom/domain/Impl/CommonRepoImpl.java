@@ -1,10 +1,10 @@
 package classroom.domain.Impl;
 
-import classroom.domain.entities.EnrollModule;
+import classroom.domain.entities.CommonRepo;
 
 import java.util.List;
 
-public class EnrollModuleImpl implements EnrollModule
+public class CommonRepoImpl implements CommonRepo
 {
 
 	@Override
