@@ -2,7 +2,7 @@ package classroom.domain.entities;
 
 import java.util.List;
 
-public interface ClassroomDelegator
+public interface EnrollModule
 {
 	<T> T add(Class<T> obj) throws Exception;
 
