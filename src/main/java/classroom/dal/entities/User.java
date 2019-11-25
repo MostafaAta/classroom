@@ -1,6 +1,6 @@
 package classroom.dal.entities;
 
-import classroom.dal.entities.Embeddable.Name;
+import classroom.dal.entities.Embeddable.CompositeName;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,7 +12,7 @@ public class User implements Serializable
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private Name name;
+	private CompositeName name;
 	private String email;
 
 	public String getEmail()
@@ -35,12 +35,12 @@ public class User implements Serializable
 		this.id = id;
 	}
 
-	public Name getName()
+	public CompositeName getName()
 	{
 		return name;
 	}
 
-	public void setName(Name name)
+	public void setName(CompositeName name)
 	{
 		this.name = name;
 	}

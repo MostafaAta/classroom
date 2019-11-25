@@ -3,7 +3,7 @@ package classroom.dal.entities.Embeddable;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class Name
+public class CompositeName
 {
 	private String firstName;
 	private String lastName;
