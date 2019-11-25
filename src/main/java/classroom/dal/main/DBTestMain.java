@@ -1,8 +1,8 @@
-package main;
+package classroom.dal.main;
 
-import hibernate.HibernateDBManager;
+import classroom.dal.hibernate.HibernateDBManager;
 
-public class TestMain
+public class DBTestMain
 {
 	public static void main(String[] args)
 	{

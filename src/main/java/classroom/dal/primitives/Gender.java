@@ -1,4 +1,4 @@
-package primitives;
+package classroom.dal.primitives;
 
 public enum Gender
 {

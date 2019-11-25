@@ -1,6 +1,6 @@
-package entities;
+package classroom.dal.entities;
 
-import entities.Embeddable.CourseRatingKey;
+import classroom.dal.entities.Embeddable.CourseRatingKey;
 
 import javax.persistence.*;
 import java.io.Serializable;

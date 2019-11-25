@@ -10,14 +10,14 @@
         <property name="hibernate.current_session_context_class">thread</property>
         <property name="connection.username">root</property>
         <property name="connection.password"/>
-        <property name="hibernate.hbm2ddl.auto">create</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
-        <mapping class="entities.Student"/>
-        <mapping class="entities.Course"/>
-        <mapping class="entities.Instructor"/>
-        <mapping class="entities.User"/>
-        <mapping class="entities.CourseRating"/>
-        <mapping class="entities.CourseRegistration"/>
+        <mapping class="classroom.dal.entities.Student"/>
+        <mapping class="classroom.dal.entities.Course"/>
+        <mapping class="classroom.dal.entities.Instructor"/>
+        <mapping class="classroom.dal.entities.User"/>
+        <mapping class="classroom.dal.entities.CourseRating"/>
+        <mapping class="classroom.dal.entities.CourseRegistration"/>
     </session-factory>
 </hibernate-configuration>

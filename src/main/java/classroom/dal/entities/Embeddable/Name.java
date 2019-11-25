@@ -1,4 +1,4 @@
-package entities.Embeddable;
+package classroom.dal.entities.Embeddable;
 
 import javax.persistence.Embeddable;
 

@@ -1,4 +1,4 @@
-package entities;
+package classroom.dal.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;

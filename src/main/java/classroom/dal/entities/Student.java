@@ -1,7 +1,7 @@
-package entities;
+package classroom.dal.entities;
 
-import entities.Embeddable.Name;
-import primitives.Gender;
+import classroom.dal.entities.Embeddable.Name;
+import classroom.dal.primitives.Gender;
 
 import javax.persistence.*;
 import java.io.Serializable;

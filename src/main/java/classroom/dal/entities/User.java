@@ -1,6 +1,6 @@
-package entities;
+package classroom.dal.entities;
 
-import entities.Embeddable.Name;
+import classroom.dal.entities.Embeddable.Name;
 
 import javax.persistence.*;
 import java.io.Serializable;

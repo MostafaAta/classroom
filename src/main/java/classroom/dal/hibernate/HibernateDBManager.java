@@ -1,4 +1,4 @@
-package hibernate;
+package classroom.dal.hibernate;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
