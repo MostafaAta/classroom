@@ -37,7 +37,7 @@ public class CommonRepoImpl implements CommonRepo
 		try
 		{
 			HibernateDBManager.beginTransaction();
-			commonRepo.update(entity);
+			commonRepo.saveOrUpdate(entity);
 			HibernateDBManager.commitTransaction();
 			return (T) entity;
 		}
@@ -56,7 +56,7 @@ public class CommonRepoImpl implements CommonRepo
 		try
 		{
 			HibernateDBManager.beginTransaction();
-			commonRepo.delete(entity);
+			commonRepo.delete(entity.getId());
 			HibernateDBManager.commitTransaction();
 		}
 		catch (Exception e)
@@ -88,16 +88,16 @@ public class CommonRepoImpl implements CommonRepo
 	}
 
 	@Override
-	public <T extends BaseEntity> List<T> findAll(BaseEntity entity)
+	public <T extends BaseEntity> List findAll(BaseEntity entity)
 	{
 		Session commonRepo = HibernateDBManager.getCommonRepo();
 		try
 		{
 			HibernateDBManager.beginTransaction();
 			Criteria criteria = commonRepo.createCriteria(entity.getClass());
-			List<T> entitiesList = criteria.list();
+			List listOfFoundRows = criteria.list();
 			HibernateDBManager.commitTransaction();
-			return entitiesList;
+			return listOfFoundRows;
 		}
 		catch (Exception e)
 		{
