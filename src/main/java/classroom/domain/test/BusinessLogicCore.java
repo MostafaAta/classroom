@@ -39,7 +39,7 @@ public class BusinessLogicCore
 		return commonRepo.find(obj);
 	}
 
-	public <T extends BaseEntity> List<T> findAll(BaseEntity obj) throws Exception
+	public <T extends BaseEntity> List findAll(BaseEntity obj) throws Exception
 	{
 		return commonRepo.findAll(obj);
 	}

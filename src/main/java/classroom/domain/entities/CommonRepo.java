@@ -14,5 +14,5 @@ public interface CommonRepo
 
 	<T extends BaseEntity> T find(BaseEntity entity) throws Exception;
 
-	<T extends BaseEntity> List<T> findAll(BaseEntity entity) throws Exception;
+	<T extends BaseEntity> List findAll(BaseEntity entity) throws Exception;
 }
