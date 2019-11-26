@@ -68,14 +68,14 @@ public class CommonRepoImpl implements CommonRepo
 	}
 
 	@Override
-	public <T extends BaseEntity> T find(BaseEntity entity)
+	public <T extends BaseEntity> T find(BaseEntity entity, Long id)
 	{
 
 		Session commonRepo = HibernateDBManager.getCommonRepo();
 		try
 		{
 			HibernateDBManager.beginTransaction();
-			BaseEntity foundEntity = (BaseEntity) commonRepo.get(entity.getClass(), entity.getId());
+			BaseEntity foundEntity = (BaseEntity) commonRepo.get(entity.getClass(), id);
 			HibernateDBManager.commitTransaction();
 			return (T) foundEntity;
 		}

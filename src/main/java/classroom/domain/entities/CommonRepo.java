@@ -12,7 +12,7 @@ public interface CommonRepo
 
 	void delete(BaseEntity entity) throws Exception;
 
-	<T extends BaseEntity> T find(BaseEntity entity) throws Exception;
+	<T extends BaseEntity> T find(BaseEntity entity, Long id) throws Exception;
 
 	<T extends BaseEntity> List findAll(BaseEntity entity) throws Exception;
 }
