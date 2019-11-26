@@ -1,7 +1,9 @@
 package classroom.domain.Impl;
 
+import classroom.dal.entities.BaseEntity;
 import classroom.dal.hibernate.HibernateDBManager;
 import classroom.domain.entities.CommonRepo;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 
 import java.util.List;
@@ -10,15 +12,15 @@ public class CommonRepoImpl implements CommonRepo
 {
 
 	@Override
-	public <T> T add(T obj)
+	public <T extends BaseEntity> T add(BaseEntity entity)
 	{
 		Session commonRepo = HibernateDBManager.getCommonRepo();
 		try
 		{
 			HibernateDBManager.beginTransaction();
-			commonRepo.saveOrUpdate(obj);
+			commonRepo.save(entity);
 			HibernateDBManager.commitTransaction();
-			return obj;
+			return (T) entity;
 		}
 		catch (Exception e)
 		{
@@ -29,26 +31,79 @@ public class CommonRepoImpl implements CommonRepo
 	}
 
 	@Override
-	public <T> T edit(T obj)
+	public <T extends BaseEntity> T edit(BaseEntity entity)
 	{
-		return null;
+		Session commonRepo = HibernateDBManager.getCommonRepo();
+		try
+		{
+			HibernateDBManager.beginTransaction();
+			commonRepo.update(entity);
+			HibernateDBManager.commitTransaction();
+			return (T) entity;
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			HibernateDBManager.rollbackTransaction();
+			throw e;
+		}
 	}
 
 	@Override
-	public <T> void delete(T obj)
+	public void delete(BaseEntity entity)
 	{
-
+		Session commonRepo = HibernateDBManager.getCommonRepo();
+		try
+		{
+			HibernateDBManager.beginTransaction();
+			commonRepo.delete(entity);
+			HibernateDBManager.commitTransaction();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			HibernateDBManager.rollbackTransaction();
+			throw e;
+		}
 	}
 
 	@Override
-	public <T> T find(T obj)
+	public <T extends BaseEntity> T find(BaseEntity entity)
 	{
-		return null;
+
+		Session commonRepo = HibernateDBManager.getCommonRepo();
+		try
+		{
+			HibernateDBManager.beginTransaction();
+			BaseEntity foundEntity = (BaseEntity) commonRepo.get(entity.getClass(), entity.getId());
+			HibernateDBManager.commitTransaction();
+			return (T) foundEntity;
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			HibernateDBManager.rollbackTransaction();
+			throw e;
+		}
 	}
 
 	@Override
-	public <T> List<T> findAll(T obj)
+	public <T extends BaseEntity> List<T> findAll(BaseEntity entity)
 	{
-		return null;
+		Session commonRepo = HibernateDBManager.getCommonRepo();
+		try
+		{
+			HibernateDBManager.beginTransaction();
+			Criteria criteria = commonRepo.createCriteria(entity.getClass());
+			List<T> entitiesList = criteria.list();
+			HibernateDBManager.commitTransaction();
+			return entitiesList;
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			HibernateDBManager.rollbackTransaction();
+			throw e;
+		}
 	}
 }

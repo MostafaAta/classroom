@@ -1,16 +1,13 @@
 package classroom.dal.entities;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
-public class Instructor implements Serializable
+public class Instructor extends BaseEntity implements Serializable
 {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
 	private String name;
 	private String address;
 	private String phone;
@@ -26,16 +23,6 @@ public class Instructor implements Serializable
 	public void setCourses(List<Course> course)
 	{
 		this.courses = course;
-	}
-
-	public Integer getId()
-	{
-		return id;
-	}
-
-	public void setId(Integer id)
-	{
-		this.id = id;
 	}
 
 	public String getName()
@@ -76,30 +63,5 @@ public class Instructor implements Serializable
 	public void setEmail(String email)
 	{
 		this.email = email;
-	}
-
-	@Override
-	public String toString()
-	{
-		return "Instructor{" + "id=" + id + ", name='" + name + '\'' + ", address='" + address + '\'' + ", phone='" + phone + '\'' + ", email='"
-				+ email + '\'' + '}';
-	}
-
-	@Override
-	public boolean equals(Object o)
-	{
-		if (this == o)
-			return true;
-		if (o == null || getClass() != o.getClass())
-			return false;
-		Instructor that = (Instructor) o;
-		return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(address, that.address) && Objects
-				.equals(phone, that.phone) && Objects.equals(email, that.email);
-	}
-
-	@Override
-	public int hashCode()
-	{
-		return Objects.hash(id, name, address, phone, email);
 	}
 }

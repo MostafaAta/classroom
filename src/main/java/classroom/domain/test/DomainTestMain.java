@@ -1,8 +1,8 @@
 package classroom.domain.test;
 
+import classroom.dal.entities.BaseEntity;
 import classroom.dal.entities.Embeddable.CompositeName;
 import classroom.dal.entities.Student;
-import classroom.dal.hibernate.HibernateDBManager;
 import classroom.dal.primitives.Gender;
 
 import java.math.BigDecimal;
@@ -13,11 +13,10 @@ public class DomainTestMain
 	{
 		try
 		{
-			String hibernateConfigFile = "hibernate.cfg.xml";
-			HibernateDBManager.setDbConfigFileName(hibernateConfigFile);
-			BusinessLogicCore blCore = new BusinessLogicCore();
 			Student student = addStudent();
-			blCore.add(student);
+			BusinessLogicCore blCore = new BusinessLogicCore();
+			BaseEntity addedStudent = blCore.add(student);
+			System.out.println("New student added with id : " + addedStudent.getId());
 		}
 		catch (Exception e)
 		{

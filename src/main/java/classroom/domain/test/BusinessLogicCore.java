@@ -1,5 +1,6 @@
 package classroom.domain.test;
 
+import classroom.dal.entities.BaseEntity;
 import classroom.dal.hibernate.HibernateDBManager;
 import classroom.domain.Impl.CommonRepoImpl;
 import classroom.domain.entities.CommonRepo;
@@ -13,30 +14,32 @@ public class BusinessLogicCore
 	public BusinessLogicCore() throws Exception
 	{
 		commonRepo = new CommonRepoImpl();
+		String hibernateConfigFile = "hibernate.cfg.xml";
+		HibernateDBManager.setDbConfigFileName(hibernateConfigFile);
 		HibernateDBManager.buildSessionFactory();
 	}
 
-	public <T> T add(T obj) throws Exception
+	public <T extends BaseEntity> T add(BaseEntity entity) throws Exception
 	{
-		return commonRepo.add(obj);
+		return commonRepo.add(entity);
 	}
 
-	public <T> T edit(T obj) throws Exception
+	public <T extends BaseEntity> T edit(BaseEntity obj) throws Exception
 	{
 		return commonRepo.edit(obj);
 	}
 
-	public <T> void delete(T obj) throws Exception
+	public void delete(BaseEntity obj) throws Exception
 	{
 		commonRepo.delete(obj);
 	}
 
-	public <T> T find(T obj) throws Exception
+	public <T extends BaseEntity> T find(BaseEntity obj) throws Exception
 	{
 		return commonRepo.find(obj);
 	}
 
-	public <T> List<T> findAll(T obj) throws Exception
+	public <T extends BaseEntity> List<T> findAll(BaseEntity obj) throws Exception
 	{
 		return commonRepo.findAll(obj);
 	}

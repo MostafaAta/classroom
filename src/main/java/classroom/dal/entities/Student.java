@@ -9,11 +9,8 @@ import java.math.BigDecimal;
 import java.util.Set;
 
 @Entity
-public class Student implements Serializable
+public class Student extends BaseEntity implements Serializable
 {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
 	private CompositeName name;
 	private String email;
 	private Gender gender;
@@ -64,16 +61,6 @@ public class Student implements Serializable
 	public void setGpa(BigDecimal gpa)
 	{
 		this.gpa = gpa;
-	}
-
-	public Long getId()
-	{
-		return id;
-	}
-
-	public void setId(Long id)
-	{
-		this.id = id;
 	}
 
 	public CompositeName getName()

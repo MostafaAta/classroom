@@ -1,16 +1,18 @@
 package classroom.domain.entities;
 
+import classroom.dal.entities.BaseEntity;
+
 import java.util.List;
 
 public interface CommonRepo
 {
-	<T> T add(T obj) throws Exception;
+	<T extends BaseEntity> T add(BaseEntity entity) throws Exception;
 
-	<T> T edit(T obj) throws Exception;
+	<T extends BaseEntity> T edit(BaseEntity entity) throws Exception;
 
-	<T> void delete(T obj) throws Exception;
+	void delete(BaseEntity entity) throws Exception;
 
-	<T> T find(T obj) throws Exception;
+	<T extends BaseEntity> T find(BaseEntity entity) throws Exception;
 
-	<T> List<T> findAll(T obj) throws Exception;
+	<T extends BaseEntity> List<T> findAll(BaseEntity entity) throws Exception;
 }

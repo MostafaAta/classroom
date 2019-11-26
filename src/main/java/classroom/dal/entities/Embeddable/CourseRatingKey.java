@@ -8,9 +8,9 @@ import java.io.Serializable;
 public class CourseRatingKey implements Serializable
 {
 	@Column(name = "student_id")
-	Long studentId;
+	private Long studentId;
 	@Column(name = "course_id")
-	Long courseId;
+	private Long courseId;
 
 	public Long getStudentId()
 	{
