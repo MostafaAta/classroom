@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "course_rating")
-public class CourseRating implements Serializable
+public class CourseRating extends BaseEntity implements Serializable
 {
 	@EmbeddedId
 	private CourseRatingKey ratingKeyId;
