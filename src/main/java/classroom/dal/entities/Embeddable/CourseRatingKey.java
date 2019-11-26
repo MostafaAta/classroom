@@ -1,11 +1,13 @@
 package classroom.dal.entities.Embeddable;
 
+import classroom.dal.entities.BaseEntity;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 @Embeddable
-public class CourseRatingKey implements Serializable
+public class CourseRatingKey extends BaseEntity implements Serializable
 {
 	@Column(name = "student_id")
 	private Long studentId;
