@@ -50,13 +50,13 @@ public class CommonRepoImpl implements CommonRepo
 	}
 
 	@Override
-	public void delete(BaseEntity entity)
+	public <T extends BaseEntity> void delete(Long id)
 	{
 		Session commonRepo = HibernateDBManager.getCommonRepo();
 		try
 		{
 			HibernateDBManager.beginTransaction();
-			commonRepo.delete(entity.getId());
+			commonRepo.delete(id);
 			HibernateDBManager.commitTransaction();
 		}
 		catch (Exception e)
@@ -68,14 +68,13 @@ public class CommonRepoImpl implements CommonRepo
 	}
 
 	@Override
-	public <T extends BaseEntity> T find(BaseEntity entity, Long id)
+	public <T extends BaseEntity> T find(Class<T> klass, Long id)
 	{
-
 		Session commonRepo = HibernateDBManager.getCommonRepo();
 		try
 		{
 			HibernateDBManager.beginTransaction();
-			BaseEntity foundEntity = (BaseEntity) commonRepo.get(entity.getClass(), id);
+			BaseEntity foundEntity = (BaseEntity) commonRepo.get(klass, id);
 			HibernateDBManager.commitTransaction();
 			return (T) foundEntity;
 		}
