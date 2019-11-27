@@ -50,13 +50,13 @@ public class CommonRepoImpl implements CommonRepo
 	}
 
 	@Override
-	public <T extends BaseEntity> void delete(Long id)
+	public <T extends BaseEntity> void delete(BaseEntity entity)
 	{
 		Session commonRepo = HibernateDBManager.getCommonRepo();
 		try
 		{
 			HibernateDBManager.beginTransaction();
-			commonRepo.delete(id);
+			commonRepo.delete(entity);
 			HibernateDBManager.commitTransaction();
 		}
 		catch (Exception e)
