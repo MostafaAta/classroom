@@ -29,14 +29,14 @@ public class BusinessLogicCore
 		return commonRepo.edit(obj);
 	}
 
-	public void delete(BaseEntity obj) throws Exception
+	public void delete(Long id) throws Exception
 	{
-		commonRepo.delete(obj);
+		commonRepo.delete(id);
 	}
 
-	public <T extends BaseEntity> T find(BaseEntity obj, Long id) throws Exception
+	public <T extends BaseEntity> T find(Class<T> klass, Long id) throws Exception
 	{
-		return commonRepo.find(obj, id);
+		return commonRepo.find(klass, id);
 	}
 
 	public <T extends BaseEntity> List findAll(BaseEntity obj) throws Exception
