@@ -13,10 +13,10 @@ public class DomainTestMain
 	{
 		try
 		{
-			addStudent();
-			addInstructor();
+			//			addStudent();
+			//			addInstructor();
 			addCourse();
-			addUser();
+			//			addUser();
 			//			editStudent();
 			//			findStudent();
 			//			deleteStudent();
@@ -61,8 +61,9 @@ public class DomainTestMain
 		try
 		{
 			BusinessLogicCore blCore = new BusinessLogicCore();
-			Student foundEntity = blCore.find(Student.class, (long) 1);
-			foundEntity.setEmail("ahmed@yahoo.com");
+			Student foundEntity = blCore.find(Student.class, (long) 2);
+			foundEntity.setName(new CompositeName("Hossam", "Ashor"));
+			foundEntity.setEmail("hossam@yahoo.com");
 			BaseEntity editStudent = blCore.edit(foundEntity);
 			showEntityResult(editStudent, "Edit");
 		}
@@ -83,13 +84,10 @@ public class DomainTestMain
 		{
 			BusinessLogicCore blCore = new BusinessLogicCore();
 			Student student = new Student();
-			CompositeName name = new CompositeName();
-			name.setFirstName("Ahmed");
-			name.setLastName("Ali");
-			student.setName(name);
-			student.setEmail("ahmed.ali@gmail.com");
+			student.setName(new CompositeName("Mohamed", "trika"));
+			student.setEmail("trika@gmail.com");
 			student.setGender(Gender.Male);
-			student.setGpa(new BigDecimal(3.0));
+			student.setGpa(new BigDecimal(4));
 			BaseEntity addedStudent = blCore.add(student);
 			showEntityResult(addedStudent, " Add Entity");
 		}
@@ -107,11 +105,9 @@ public class DomainTestMain
 			BusinessLogicCore blCore = new BusinessLogicCore();
 			Course course = new Course();
 			course.setName("Data Structure");
-			course.setCode("002");
+			course.setCode("001");
 			course.setPreRequest(true);
-			Instructor instructor = new Instructor();
-			instructor.setId((long) 1);
-			course.setInstructor(instructor);
+			course.setInstructor(new Instructor((long) 3));
 			BaseEntity addedCourse = blCore.add(course);
 			showEntityResult(addedCourse, " Add Entity");
 		}
@@ -128,10 +124,10 @@ public class DomainTestMain
 		{
 			BusinessLogicCore blCore = new BusinessLogicCore();
 			Instructor instructor = new Instructor();
-			instructor.setName("dr.Ahmed");
-			instructor.setEmail("dr.ahmed@gmail.com");
-			instructor.setAddress("Dokki");
-			instructor.setPhone("01065102524");
+			instructor.setName("dr.Yasser");
+			instructor.setEmail("dr.abdalla@yahoo.com");
+			instructor.setAddress("Aswan");
+			instructor.setPhone("89446566");
 			BaseEntity addedInstructor = blCore.add(instructor);
 			showEntityResult(addedInstructor, " Add Entity");
 		}

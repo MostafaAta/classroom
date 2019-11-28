@@ -15,6 +15,15 @@ public class Instructor extends BaseEntity implements Serializable
 	@OneToMany(mappedBy = "instructor")
 	private List<Course> courses;
 
+	public Instructor()
+	{
+	}
+
+	public Instructor(Long id)
+	{
+		this.setId(id);
+	}
+
 	public List<Course> getCourses()
 	{
 		return courses;

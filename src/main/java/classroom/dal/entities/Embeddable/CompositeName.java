@@ -8,6 +8,17 @@ public class CompositeName
 	private String firstName;
 	private String lastName;
 
+	public CompositeName()
+	{
+
+	}
+
+	public CompositeName(String firstName, String lastName)
+	{
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+
 	public String getFirstName()
 	{
 		return firstName;
