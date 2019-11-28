@@ -6,6 +6,8 @@ import classroom.dal.hibernate.HibernateDBManager;
 import classroom.dal.primitives.Gender;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 public class DomainTestMain
 {
@@ -15,11 +17,28 @@ public class DomainTestMain
 		{
 			//			addStudent();
 			//			addInstructor();
-			addCourse();
+			//			addCourse();
+			//			editCourse();
 			//			addUser();
-			//			editStudent();
+			editStudent();
 			//			findStudent();
 			//			deleteStudent();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+	private static void editCourse()
+	{
+		try
+		{
+			BusinessLogicCore blCore = new BusinessLogicCore();
+			Course foundEntity = blCore.find(Course.class, (long) 5);
+			foundEntity.setPreRequest(true);
+			BaseEntity editCourse = blCore.edit(foundEntity);
+			showEntityResult(editCourse, "Edit");
 		}
 		catch (Exception e)
 		{
@@ -61,10 +80,12 @@ public class DomainTestMain
 		try
 		{
 			BusinessLogicCore blCore = new BusinessLogicCore();
-			Student foundEntity = blCore.find(Student.class, (long) 2);
-			foundEntity.setName(new CompositeName("Hossam", "Ashor"));
-			foundEntity.setEmail("hossam@yahoo.com");
-			BaseEntity editStudent = blCore.edit(foundEntity);
+			Student student = blCore.find(Student.class, (long) 7);
+			Set<Course> likedCourses = new HashSet<>();
+			likedCourses.add(new Course((long) 4));
+			likedCourses.add(new Course((long) 2));
+			student.setLikedCourses(likedCourses);
+			BaseEntity editStudent = blCore.edit(student);
 			showEntityResult(editStudent, "Edit");
 		}
 		catch (Exception e)
@@ -104,10 +125,10 @@ public class DomainTestMain
 		{
 			BusinessLogicCore blCore = new BusinessLogicCore();
 			Course course = new Course();
-			course.setName("Data Structure");
-			course.setCode("001");
+			course.setName("gis");
+			course.setCode("105");
 			course.setPreRequest(true);
-			course.setInstructor(new Instructor((long) 3));
+			course.setInstructor(new Instructor((long) 7));
 			BaseEntity addedCourse = blCore.add(course);
 			showEntityResult(addedCourse, " Add Entity");
 		}

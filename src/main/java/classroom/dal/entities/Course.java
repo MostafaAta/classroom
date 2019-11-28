@@ -22,6 +22,16 @@ public class Course extends BaseEntity implements Serializable
 	@OneToMany(mappedBy = "course")
 	private Set<CourseRegistration> registrations;
 
+	public Course()
+	{
+
+	}
+
+	public Course(Long id)
+	{
+		this.setId(id);
+	}
+
 	public Set<CourseRegistration> getRegistrations()
 	{
 		return registrations;
