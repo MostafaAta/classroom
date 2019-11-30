@@ -12,6 +12,16 @@ public class CourseRatingKey implements Serializable
 	@Column(name = "course_id")
 	private Long courseId;
 
+	public CourseRatingKey()
+	{
+	}
+
+	public CourseRatingKey(Long studentId, Long courseId)
+	{
+		this.studentId = studentId;
+		this.courseId = courseId;
+	}
+
 	public Long getStudentId()
 	{
 		return studentId;

@@ -2,6 +2,7 @@ package classroom.domain.test;
 
 import classroom.dal.entities.*;
 import classroom.dal.entities.Embeddable.CompositeName;
+import classroom.dal.entities.Embeddable.CourseRatingKey;
 import classroom.dal.hibernate.HibernateDBManager;
 import classroom.dal.primitives.Gender;
 
@@ -20,9 +21,35 @@ public class DomainTestMain
 			//			addCourse();
 			//			editCourse();
 			//			addUser();
-			editStudent();
+			//			editStudent();
 			//			findStudent();
 			//			deleteStudent();
+			addCourseRatings();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+	private static void addCourseRatings()
+	{
+		try
+		{
+			BusinessLogicCore blCore = new BusinessLogicCore();
+			CourseRatingKey key = new CourseRatingKey();
+			key.setStudentId((long) 1);
+			key.setCourseId((long) 1);
+			Student student = blCore.find(Student.class, (long) 1);
+			Course course = blCore.find(Course.class, (long) 1);
+			CourseRating courseRating = new CourseRating();
+			courseRating.setId((long) 1);
+			courseRating.setRatingKeyId(key);
+			courseRating.setStudent(student);
+			courseRating.setCourse(course);
+			courseRating.setRating(new BigDecimal(2.9));
+			BaseEntity addedCourseRating = blCore.add(courseRating);
+			showEntityResult(addedCourseRating, "Added");
 		}
 		catch (Exception e)
 		{
