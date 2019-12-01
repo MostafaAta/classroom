@@ -7,9 +7,9 @@ import java.io.Serializable;
 @Embeddable
 public class CourseRatingKey implements Serializable
 {
-	@Column(name = "student_id")
+	@Column(name = "student_id", unique = true)
 	private Long studentId;
-	@Column(name = "course_id")
+	@Column(name = "course_id", unique = true)
 	private Long courseId;
 
 	public CourseRatingKey()
