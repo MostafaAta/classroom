@@ -39,11 +39,10 @@ public class DomainTestMain
 			BusinessLogicCore blCore = new BusinessLogicCore();
 			CourseRatingKey key = new CourseRatingKey();
 			key.setStudentId((long) 1);
-			key.setCourseId((long) 1);
+			key.setCourseId((long) 2);
 			Student student = blCore.find(Student.class, (long) 1);
-			Course course = blCore.find(Course.class, (long) 1);
+			Course course = blCore.find(Course.class, (long) 2);
 			CourseRating courseRating = new CourseRating();
-			courseRating.setId((long) 1);
 			courseRating.setRatingKeyId(key);
 			courseRating.setStudent(student);
 			courseRating.setCourse(course);
@@ -155,7 +154,7 @@ public class DomainTestMain
 			course.setName("gis");
 			course.setCode("105");
 			course.setPreRequest(true);
-			course.setInstructor(new Instructor((long) 7));
+			course.setInstructor(new Instructor((long) 1));
 			BaseEntity addedCourse = blCore.add(course);
 			showEntityResult(addedCourse, " Add Entity");
 		}

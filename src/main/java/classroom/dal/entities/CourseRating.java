@@ -1,6 +1,7 @@
 package classroom.dal.entities;
 
 import classroom.dal.entities.Embeddable.CourseRatingKey;
+import com.sun.istack.internal.NotNull;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,7 +11,8 @@ import java.math.BigDecimal;
 @Table(name = "course_rating")
 public class CourseRating extends BaseEntity implements Serializable
 {
-	@EmbeddedId
+	@Column(unique = true)
+	@NotNull
 	private CourseRatingKey ratingKeyId;
 	@ManyToOne
 	@MapsId("student_id")
