@@ -2,7 +2,6 @@ package classroom.domain.test;
 
 import classroom.dal.entities.*;
 import classroom.dal.entities.Embeddable.CompositeName;
-import classroom.dal.entities.Embeddable.CourseRatingKey;
 import classroom.dal.hibernate.HibernateDBManager;
 import classroom.dal.primitives.Gender;
 
@@ -17,7 +16,7 @@ public class DomainTestMain
 		try
 		{
 			//			addStudent();
-			//			addInstructor();
+			addInstructor();
 			//			addCourse();
 			//			editCourse();
 			//			addUser();
@@ -25,7 +24,7 @@ public class DomainTestMain
 			//			findStudent();
 			//			deleteStudent();
 			//			addCourseRatings();
-			addCourseRegistration();
+			//			addCourseRegistration();
 		}
 		catch (Exception e)
 		{
@@ -58,13 +57,10 @@ public class DomainTestMain
 		try
 		{
 			BusinessLogicCore blCore = new BusinessLogicCore();
-			CourseRatingKey key = new CourseRatingKey();
-			key.setStudentId((long) 1);
-			key.setCourseId((long) 1);
+			CourseRating courseRating = new CourseRating();
+			courseRating.setId((long) 1);
 			Student student = blCore.find(Student.class, (long) 1);
 			Course course = blCore.find(Course.class, (long) 1);
-			CourseRating courseRating = new CourseRating();
-			courseRating.setRatingKeyId(key);
 			courseRating.setStudent(student);
 			courseRating.setCourse(course);
 			courseRating.setRating(new BigDecimal(2.9));
@@ -152,10 +148,10 @@ public class DomainTestMain
 		{
 			BusinessLogicCore blCore = new BusinessLogicCore();
 			Student student = new Student();
-			student.setName(new CompositeName("Mohamed", "trika"));
-			student.setEmail("trika@gmail.com");
-			student.setGender(Gender.Male);
-			student.setGpa(new BigDecimal(4));
+			student.setName(new CompositeName("Amal", "Qandel"));
+			student.setEmail("amal@gmail.com");
+			student.setGender(Gender.Female);
+			student.setGpa(new BigDecimal(2.1));
 			BaseEntity addedStudent = blCore.add(student);
 			showEntityResult(addedStudent, " Add Entity");
 		}
@@ -172,8 +168,8 @@ public class DomainTestMain
 		{
 			BusinessLogicCore blCore = new BusinessLogicCore();
 			Course course = new Course();
-			course.setName("gis");
 			course.setCode("105");
+			course.setName("001");
 			course.setPreRequest(true);
 			course.setInstructor(new Instructor((long) 1));
 			BaseEntity addedCourse = blCore.add(course);
@@ -191,12 +187,7 @@ public class DomainTestMain
 		try
 		{
 			BusinessLogicCore blCore = new BusinessLogicCore();
-			Instructor instructor = new Instructor();
-			instructor.setName("dr.Yasser");
-			instructor.setEmail("dr.abdalla@yahoo.com");
-			instructor.setAddress("Aswan");
-			instructor.setPhone("89446566");
-			BaseEntity addedInstructor = blCore.add(instructor);
+			BaseEntity addedInstructor = blCore.add(new Instructor("dr.Yasser", "Aswan", "068654989", "dr.yasser@gmail.com", null));
 			showEntityResult(addedInstructor, " Add Entity");
 		}
 		catch (Exception e)

@@ -19,6 +19,15 @@ public class Instructor extends BaseEntity implements Serializable
 	{
 	}
 
+	public Instructor(String name, String address, String phone, String email, List<Course> courses)
+	{
+		this.name = name;
+		this.address = address;
+		this.phone = phone;
+		this.email = email;
+		this.courses = courses;
+	}
+
 	public Instructor(Long id)
 	{
 		this.setId(id);

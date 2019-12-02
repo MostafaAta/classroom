@@ -22,6 +22,10 @@ public class CourseRating extends BaseEntity implements Serializable
 	private Course course;
 	private BigDecimal rating;
 
+	public CourseRating()
+	{
+	}
+
 	public CourseRatingKey getRatingKeyId()
 	{
 		return ratingKeyId;
