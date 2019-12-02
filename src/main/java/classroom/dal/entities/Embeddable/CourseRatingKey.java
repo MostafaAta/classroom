@@ -1,5 +1,7 @@
 package classroom.dal.entities.Embeddable;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
@@ -7,8 +9,10 @@ import java.io.Serializable;
 @Embeddable
 public class CourseRatingKey implements Serializable
 {
+	@NotNull
 	@Column(name = "student_id", unique = true)
 	private Long studentId;
+	@NotNull
 	@Column(name = "course_id", unique = true)
 	private Long courseId;
 

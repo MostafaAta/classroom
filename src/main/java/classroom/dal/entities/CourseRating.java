@@ -11,8 +11,6 @@ import java.math.BigDecimal;
 @Table(name = "course_rating")
 public class CourseRating extends BaseEntity implements Serializable
 {
-	@Column(unique = true)
-	@NotNull
 	private CourseRatingKey ratingKeyId;
 	@ManyToOne
 	@MapsId("student_id")
