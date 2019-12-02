@@ -2,10 +2,12 @@ package classroom.domain.test;
 
 import classroom.dal.entities.*;
 import classroom.dal.entities.Embeddable.CompositeName;
+import classroom.dal.entities.Embeddable.CourseRatingKey;
 import classroom.dal.hibernate.HibernateDBManager;
 import classroom.dal.primitives.Gender;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,7 +18,7 @@ public class DomainTestMain
 		try
 		{
 			//			addStudent();
-			addInstructor();
+			//			addInstructor();
 			//			addCourse();
 			//			editCourse();
 			//			addUser();
@@ -24,7 +26,7 @@ public class DomainTestMain
 			//			findStudent();
 			//			deleteStudent();
 			//			addCourseRatings();
-			//			addCourseRegistration();
+			addCourseRegistration();
 		}
 		catch (Exception e)
 		{
@@ -42,6 +44,7 @@ public class DomainTestMain
 			CourseRegistration registration = new CourseRegistration();
 			registration.setStudent(student);
 			registration.setCourse(course);
+			registration.setRegisteredAt(LocalDateTime.of(2019,12,20,11,2,21));
 			registration.setGrade(BigDecimal.valueOf(4));
 			BaseEntity addedRegistration = core.add(registration);
 			showEntityResult(addedRegistration, "Added");
@@ -57,13 +60,12 @@ public class DomainTestMain
 		try
 		{
 			BusinessLogicCore blCore = new BusinessLogicCore();
+			CourseRatingKey key = new CourseRatingKey();
+			key.setStudentId((long) 2);
+			key.setCourseId((long) 3);
 			CourseRating courseRating = new CourseRating();
-			courseRating.setId((long) 1);
-			Student student = blCore.find(Student.class, (long) 1);
-			Course course = blCore.find(Course.class, (long) 1);
-			courseRating.setStudent(student);
-			courseRating.setCourse(course);
-			courseRating.setRating(new BigDecimal(2.9));
+			courseRating.setRatingKeyId(key);
+			courseRating.setRating(new BigDecimal(3.1));
 			BaseEntity addedCourseRating = blCore.add(courseRating);
 			showEntityResult(addedCourseRating, "Added");
 		}
@@ -123,10 +125,10 @@ public class DomainTestMain
 		try
 		{
 			BusinessLogicCore blCore = new BusinessLogicCore();
-			Student student = blCore.find(Student.class, (long) 7);
+			Student student = blCore.find(Student.class, (long) 8);
 			Set<Course> likedCourses = new HashSet<>();
-			likedCourses.add(new Course((long) 4));
-			likedCourses.add(new Course((long) 2));
+			Course course = new Course((long) 5);
+			likedCourses.add(course);
 			student.setLikedCourses(likedCourses);
 			BaseEntity editStudent = blCore.edit(student);
 			showEntityResult(editStudent, "Edit");
@@ -168,10 +170,10 @@ public class DomainTestMain
 		{
 			BusinessLogicCore blCore = new BusinessLogicCore();
 			Course course = new Course();
-			course.setCode("105");
-			course.setName("001");
+			course.setCode("054");
+			course.setName("gis");
 			course.setPreRequest(true);
-			course.setInstructor(new Instructor((long) 1));
+			course.setInstructor(new Instructor((long) 6));
 			BaseEntity addedCourse = blCore.add(course);
 			showEntityResult(addedCourse, " Add Entity");
 		}
