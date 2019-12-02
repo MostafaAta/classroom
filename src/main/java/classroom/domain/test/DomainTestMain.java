@@ -24,7 +24,28 @@ public class DomainTestMain
 			//			editStudent();
 			//			findStudent();
 			//			deleteStudent();
-			addCourseRatings();
+			//			addCourseRatings();
+			addCourseRegistration();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+	private static void addCourseRegistration()
+	{
+		try
+		{
+			BusinessLogicCore core = new BusinessLogicCore();
+			Student student = core.find(Student.class, (long) 1);
+			Course course = core.find(Course.class, (long) 1);
+			CourseRegistration registration = new CourseRegistration();
+			registration.setStudent(student);
+			registration.setCourse(course);
+			registration.setGrade(BigDecimal.valueOf(4));
+			BaseEntity addedRegistration = core.add(registration);
+			showEntityResult(addedRegistration, "Added");
 		}
 		catch (Exception e)
 		{
