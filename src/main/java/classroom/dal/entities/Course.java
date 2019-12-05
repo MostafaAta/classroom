@@ -10,6 +10,7 @@ import java.util.Set;
 @Entity
 public class Course extends BaseEntity implements Serializable
 {
+	//TODO : test commit mahmoud
 	private String name;
 	private Boolean isPreRequest;
 	private String code;
