@@ -5,6 +5,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class CompositeName
 {
+	//TODO : testCommit
 	private String firstName;
 	private String lastName;
 
