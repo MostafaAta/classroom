@@ -11,29 +11,17 @@ import java.math.BigDecimal;
 @Table(name = "course_rating")
 public class CourseRating extends BaseEntity implements Serializable
 {
-	private CourseRatingKey ratingKeyId;
-	@ManyToOne
-	@MapsId("student_id")
-	@JoinColumn(name = "student_id")
+	@OneToOne
 	private Student student;
-	@ManyToOne
-	@MapsId("course_id")
-	@JoinColumn(name = "course_id")
+	@OneToOne
 	private Course course;
 	private BigDecimal rating;
+	@Fetch(FetchMode.JOIN)
+	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
+	private List<CourseRatingLine> details;
 
 	public CourseRating()
 	{
-	}
-
-	public CourseRatingKey getRatingKeyId()
-	{
-		return ratingKeyId;
-	}
-
-	public void setRatingKeyId(CourseRatingKey ratingKeyId)
-	{
-		this.ratingKeyId = ratingKeyId;
 	}
 
 	public Student getStudent()
@@ -64,5 +52,15 @@ public class CourseRating extends BaseEntity implements Serializable
 	public void setRating(BigDecimal rating)
 	{
 		this.rating = rating;
+	}
+
+	public List<CourseRatingLine> getDetails()
+	{
+		return details;
+	}
+
+	public void setDetails(List<CourseRatingLine> details)
+	{
+		this.details = details;
 	}
 }

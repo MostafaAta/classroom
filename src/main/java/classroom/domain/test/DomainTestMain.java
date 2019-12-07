@@ -26,9 +26,10 @@ public class DomainTestMain
 			//			findStudent();
 			//			deleteStudent();
 			//			addCourseRatings();
-			addCourseRegistration();
+			//			addCourseRegistration();
+			NewTest.createScenario(false);
 		}
-		catch (Exception e)
+		catch (Throwable e)
 		{
 			e.printStackTrace();
 		}
@@ -41,10 +42,10 @@ public class DomainTestMain
 			BusinessLogicCore core = new BusinessLogicCore();
 			Student student = core.find(Student.class, (long) 1);
 			Course course = core.find(Course.class, (long) 1);
-			CourseRegistration registration = new CourseRegistration();
+			StudentRegistration registration = new StudentRegistration();
 			registration.setStudent(student);
 			registration.setCourse(course);
-			registration.setRegisteredAt(LocalDateTime.of(2019,12,20,11,2,21));
+			registration.setRegisteredAt(LocalDateTime.of(2019, 12, 20, 11, 2, 21));
 			registration.setGrade(BigDecimal.valueOf(4));
 			BaseEntity addedRegistration = core.add(registration);
 			showEntityResult(addedRegistration, "Added");
@@ -64,8 +65,8 @@ public class DomainTestMain
 			key.setStudentId((long) 2);
 			key.setCourseId((long) 3);
 			CourseRating courseRating = new CourseRating();
-			courseRating.setRatingKeyId(key);
-			courseRating.setRating(new BigDecimal(3.1));
+			//			courseRating.setRatingKeyId(key);
+			courseRating.setRating(BigDecimal.valueOf(3.1));
 			BaseEntity addedCourseRating = blCore.add(courseRating);
 			showEntityResult(addedCourseRating, "Added");
 		}
@@ -127,9 +128,9 @@ public class DomainTestMain
 			BusinessLogicCore blCore = new BusinessLogicCore();
 			Student student = blCore.find(Student.class, (long) 8);
 			Set<Course> likedCourses = new HashSet<>();
-			Course course = new Course((long) 5);
-			likedCourses.add(course);
-			student.setLikedCourses(likedCourses);
+			//			Course course = new Course((long) 5);
+			//			likedCourses.add(course);
+			//			student.setLikedCourses(likedCourses);
 			BaseEntity editStudent = blCore.edit(student);
 			showEntityResult(editStudent, "Edit");
 		}
@@ -153,7 +154,7 @@ public class DomainTestMain
 			student.setName(new CompositeName("Amal", "Qandel"));
 			student.setEmail("amal@gmail.com");
 			student.setGender(Gender.Female);
-			student.setGpa(new BigDecimal(2.1));
+			student.setGpa(BigDecimal.valueOf(2.1));
 			BaseEntity addedStudent = blCore.add(student);
 			showEntityResult(addedStudent, " Add Entity");
 		}
@@ -171,9 +172,9 @@ public class DomainTestMain
 			BusinessLogicCore blCore = new BusinessLogicCore();
 			Course course = new Course();
 			course.setCode("054");
-			course.setName("gis");
+			//			course.setName("gis");
 			course.setPreRequest(true);
-			course.setInstructor(new Instructor((long) 6));
+			//			course.setInstructor(new Instructor((long) 6));
 			BaseEntity addedCourse = blCore.add(course);
 			showEntityResult(addedCourse, " Add Entity");
 		}
@@ -189,8 +190,8 @@ public class DomainTestMain
 		try
 		{
 			BusinessLogicCore blCore = new BusinessLogicCore();
-			BaseEntity addedInstructor = blCore.add(new Instructor("dr.Yasser", "Aswan", "068654989", "dr.yasser@gmail.com", null));
-			showEntityResult(addedInstructor, " Add Entity");
+			//			BaseEntity addedInstructor = blCore.add(new Instructor("dr.Yasser", "Aswan", "068654989", "dr.yasser@gmail.com", null));
+			//			showEntityResult(addedInstructor, " Add Entity");
 		}
 		catch (Exception e)
 		{

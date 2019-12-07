@@ -27,41 +27,6 @@ public class Course extends BaseEntity implements Serializable
 
 	}
 
-	public Course(Long id)
-	{
-		this.setId(id);
-	}
-
-	public Set<CourseRegistration> getRegistrations()
-	{
-		return registrations;
-	}
-
-	public void setRegistrations(Set<CourseRegistration> registrations)
-	{
-		this.registrations = registrations;
-	}
-
-	public Set<CourseRating> getRatings()
-	{
-		return ratings;
-	}
-
-	public void setRatings(Set<CourseRating> ratings)
-	{
-		this.ratings = ratings;
-	}
-
-	public Set<Student> getLikes()
-	{
-		return likes;
-	}
-
-	public void setLikes(Set<Student> likes)
-	{
-		this.likes = likes;
-	}
-
 	public String getCode()
 	{
 		return code;
@@ -90,15 +55,5 @@ public class Course extends BaseEntity implements Serializable
 	public void setPreRequest(Boolean preRequest)
 	{
 		isPreRequest = preRequest;
-	}
-
-	public Instructor getInstructor()
-	{
-		return instructor;
-	}
-
-	public void setInstructor(Instructor instructor)
-	{
-		this.instructor = instructor;
 	}
 }

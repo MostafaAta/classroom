@@ -19,17 +19,17 @@ public class BusinessLogicCore
 		HibernateDBManager.buildSessionFactory();
 	}
 
-	public <T extends BaseEntity> T add(BaseEntity entity) throws Exception
+	public <T extends BaseEntity> T add(T entity) throws Exception
 	{
 		return commonRepo.add(entity);
 	}
 
-	public <T extends BaseEntity> T edit(BaseEntity obj) throws Exception
+	public <T extends BaseEntity> T edit(T obj) throws Exception
 	{
 		return commonRepo.edit(obj);
 	}
 
-	public void delete(BaseEntity entity) throws Exception
+	public <T extends BaseEntity> void delete(T entity) throws Exception
 	{
 		commonRepo.delete(entity);
 	}

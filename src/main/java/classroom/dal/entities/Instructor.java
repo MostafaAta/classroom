@@ -12,8 +12,6 @@ public class Instructor extends BaseEntity implements Serializable
 	private String address;
 	private String phone;
 	private String email;
-	@OneToMany(mappedBy = "instructor")
-	private List<Course> courses;
 
 	public Instructor()
 	{
@@ -31,16 +29,6 @@ public class Instructor extends BaseEntity implements Serializable
 	public Instructor(Long id)
 	{
 		this.setId(id);
-	}
-
-	public List<Course> getCourses()
-	{
-		return courses;
-	}
-
-	public void setCourses(List<Course> course)
-	{
-		this.courses = course;
 	}
 
 	public String getName()

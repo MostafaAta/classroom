@@ -1,25 +1,24 @@
-package classroom.dal.entities;
+package classroom.dal.details;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import java.io.Serializable;
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import classroom.dal.entities.*;
+
+import javax.persistence.*;
+import java.math.*;
+import java.time.*;
 
 @Entity
-@Table(name = "course_reg")
-public class CourseRegistration extends BaseEntity implements Serializable
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public class StudentRegistrationLine extends RootLine
 {
 	@ManyToOne
-	@JoinColumn(name = "student_id")
-	Student student;
+	private Course course;
 	@ManyToOne
-	@JoinColumn(name = "course_id")
-	Course course;
-	LocalDateTime registeredAt;
+	private Student student;
+	private LocalDateTime registeredAt;
 	private BigDecimal grade;
+	@ManyToOne
+	@JoinColumn
+	StudentRegistration owner;
 
 	public Student getStudent()
 	{
@@ -59,5 +58,15 @@ public class CourseRegistration extends BaseEntity implements Serializable
 	public void setGrade(BigDecimal grade)
 	{
 		this.grade = grade;
+	}
+
+	public StudentRegistration getOwner()
+	{
+		return owner;
+	}
+
+	public void setOwner(StudentRegistration owner)
+	{
+		this.owner = owner;
 	}
 }

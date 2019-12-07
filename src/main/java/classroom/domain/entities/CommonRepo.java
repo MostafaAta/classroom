@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface CommonRepo
 {
-	<T extends BaseEntity> T add(BaseEntity entity) throws Exception;
+	<T extends BaseEntity> T add(T entity) throws Exception;
 
-	<T extends BaseEntity> T edit(BaseEntity entity) throws Exception;
+	<T extends BaseEntity> T edit(T entity) throws Exception;
 
-	<T extends BaseEntity> void delete(BaseEntity entity) throws Exception;
+	<T extends BaseEntity> void delete(T entity) throws Exception;
 
 	<T extends BaseEntity> T find(Class<T> klass, Long id) throws Exception;
 

@@ -12,7 +12,7 @@ public class CommonRepoImpl implements CommonRepo
 {
 
 	@Override
-	public <T extends BaseEntity> T add(BaseEntity entity)
+	public <T extends BaseEntity> T add(T entity)
 	{
 		Session commonRepo = HibernateDBManager.getCommonRepo();
 		try
@@ -20,7 +20,7 @@ public class CommonRepoImpl implements CommonRepo
 			HibernateDBManager.beginTransaction();
 			commonRepo.save(entity);
 			HibernateDBManager.commitTransaction();
-			return (T) entity;
+			return entity;
 		}
 		catch (Exception e)
 		{
@@ -31,7 +31,7 @@ public class CommonRepoImpl implements CommonRepo
 	}
 
 	@Override
-	public <T extends BaseEntity> T edit(BaseEntity entity)
+	public <T extends BaseEntity> T edit(T entity)
 	{
 		Session commonRepo = HibernateDBManager.getCommonRepo();
 		try
@@ -39,7 +39,7 @@ public class CommonRepoImpl implements CommonRepo
 			HibernateDBManager.beginTransaction();
 			commonRepo.saveOrUpdate(entity);
 			HibernateDBManager.commitTransaction();
-			return (T) entity;
+			return entity;
 		}
 		catch (Exception e)
 		{
@@ -50,7 +50,7 @@ public class CommonRepoImpl implements CommonRepo
 	}
 
 	@Override
-	public <T extends BaseEntity> void delete(BaseEntity entity)
+	public <T extends BaseEntity> void delete(T entity)
 	{
 		Session commonRepo = HibernateDBManager.getCommonRepo();
 		try
@@ -74,9 +74,9 @@ public class CommonRepoImpl implements CommonRepo
 		try
 		{
 			HibernateDBManager.beginTransaction();
-			BaseEntity foundEntity = (BaseEntity) commonRepo.get(klass, id);
+			T foundEntity = (T) commonRepo.get(klass, id);
 			HibernateDBManager.commitTransaction();
-			return (T) foundEntity;
+			return foundEntity;
 		}
 		catch (Exception e)
 		{
