@@ -1,17 +1,17 @@
 package classroom.dal.entities;
 
-import classroom.dal.entities.Embeddable.*;
-import classroom.dal.primitives.*;
-import classroom.dal.roots.*;
+import classroom.dal.primitives.Gender;
+import classroom.dal.roots.BaseEntity;
 
-import javax.persistence.*;
-import java.math.*;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import java.math.BigDecimal;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Student extends BaseEntity
 {
-	private CompositeName name;
 	private String email;
 	private Gender gender;
 	private BigDecimal gpa;
@@ -34,16 +34,6 @@ public class Student extends BaseEntity
 	public void setGpa(BigDecimal gpa)
 	{
 		this.gpa = gpa;
-	}
-
-	public CompositeName getName()
-	{
-		return name;
-	}
-
-	public void setName(CompositeName name)
-	{
-		this.name = name;
 	}
 
 	public String getEmail()

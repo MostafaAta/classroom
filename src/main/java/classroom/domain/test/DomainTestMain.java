@@ -1,14 +1,17 @@
 package classroom.domain.test;
 
-import classroom.dal.entities.*;
-import classroom.dal.entities.Embeddable.*;
-import classroom.dal.hibernate.*;
-import classroom.dal.primitives.*;
-import classroom.dal.roots.*;
+import classroom.dal.entities.Course;
+import classroom.dal.entities.Student;
+import classroom.dal.entities.StudentRegistration;
+import classroom.dal.entities.User;
+import classroom.dal.hibernate.HibernateDBManager;
+import classroom.dal.primitives.Gender;
+import classroom.dal.roots.BaseEntity;
 
-import java.math.*;
-import java.time.*;
-import java.util.*;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 public class DomainTestMain
 {
@@ -55,26 +58,6 @@ public class DomainTestMain
 		}
 	}
 
-	private static void addCourseRatings()
-	{
-		try
-		{
-			BusinessLogicCore blCore = new BusinessLogicCore();
-			CourseRatingKey key = new CourseRatingKey();
-			key.setStudentId((long) 2);
-			key.setCourseId((long) 3);
-			CourseRating courseRating = new CourseRating();
-			//			courseRating.setRatingKeyId(key);
-			courseRating.setRating(BigDecimal.valueOf(3.1));
-			BaseEntity addedCourseRating = blCore.add(courseRating);
-			showEntityResult(addedCourseRating, "Added");
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-	}
-
 	private static void editCourse()
 	{
 		try
@@ -112,7 +95,7 @@ public class DomainTestMain
 			BusinessLogicCore core = new BusinessLogicCore();
 			Student foundStudent = core.find(Student.class, (long) 1);
 			showEntityResult(foundStudent, "Find");
-			System.out.println("first name : " + foundStudent.getName().getFirstName());
+			System.out.println("first name : " + foundStudent.getName1());
 		}
 		catch (Exception e)
 		{
@@ -150,7 +133,7 @@ public class DomainTestMain
 		{
 			BusinessLogicCore blCore = new BusinessLogicCore();
 			Student student = new Student();
-			student.setName(new CompositeName("Amal", "Qandel"));
+			student.setName1("Amal");
 			student.setEmail("amal@gmail.com");
 			student.setGender(Gender.Female);
 			student.setGpa(BigDecimal.valueOf(2.1));
@@ -205,10 +188,8 @@ public class DomainTestMain
 		{
 			BusinessLogicCore blCore = new BusinessLogicCore();
 			User user = new User();
-			CompositeName compositeName = new CompositeName();
-			compositeName.setFirstName("mohamed");
-			compositeName.setLastName("mahmoud");
-			user.setName(compositeName);
+			user.setName1("mohamed");
+			user.setName2("mahmoud");
 			user.setEmail("moamed_mahmoud20@gmail.com");
 			BaseEntity addedUser = blCore.add(user);
 			showEntityResult(addedUser, " Add Entity");

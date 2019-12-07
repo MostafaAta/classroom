@@ -10,14 +10,20 @@
         <property name="hibernate.current_session_context_class">thread</property>
         <property name="connection.username">root</property>
         <property name="connection.password"/>
-        <property name="hibernate.hbm2ddl.auto">update</property>
-        <property name="show_sql">true</property>
-        <property name="format_sql">true</property>
-        <mapping class="classroom.dal.entities.Student"/>
+        <property name="hibernate.hbm2ddl.auto">create</property>
+        <property name="show_sql">false</property>
+        <property name="format_sql">false</property>
         <mapping class="classroom.dal.entities.Course"/>
-        <mapping class="classroom.dal.entities.Instructor"/>
-        <mapping class="classroom.dal.entities.User"/>
+        <mapping class="classroom.dal.entities.CourseLike"/>
         <mapping class="classroom.dal.entities.CourseRating"/>
-        <mapping class="classroom.dal.entities.CourseRegistration"/>
+        <mapping class="classroom.dal.entities.Instructor"/>
+        <mapping class="classroom.dal.entities.InstructorRegistration"/>
+        <mapping class="classroom.dal.entities.Student"/>
+        <mapping class="classroom.dal.entities.StudentRegistration"/>
+        <mapping class="classroom.dal.entities.User"/>
+        <mapping class="classroom.dal.details.CourseLikeLine"/>
+        <mapping class="classroom.dal.details.CourseRatingLine"/>
+        <mapping class="classroom.dal.details.InstructorRegistrationLine"/>
+        <mapping class="classroom.dal.details.StudentRegistrationLine"/>
     </session-factory>
 </hibernate-configuration>

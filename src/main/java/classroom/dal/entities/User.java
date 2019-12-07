@@ -1,15 +1,15 @@
 package classroom.dal.entities;
 
-import classroom.dal.entities.Embeddable.*;
-import classroom.dal.roots.*;
+import classroom.dal.roots.BaseEntity;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class User extends BaseEntity
 {
-	private CompositeName name;
 	private String email;
 
 	public String getEmail()
@@ -22,14 +22,5 @@ public class User extends BaseEntity
 		this.email = email;
 	}
 
-	public CompositeName getName()
-	{
-		return name;
-	}
-
-	public void setName(CompositeName name)
-	{
-		this.name = name;
-	}
 }
 
