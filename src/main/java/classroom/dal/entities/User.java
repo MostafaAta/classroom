@@ -1,14 +1,13 @@
 package classroom.dal.entities;
 
-import classroom.dal.entities.Embeddable.CompositeName;
+import classroom.dal.entities.Embeddable.*;
+import classroom.dal.roots.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import java.io.Serializable;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "User")
-public class User extends BaseEntity implements Serializable
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public class User extends BaseEntity
 {
 	private CompositeName name;
 	private String email;

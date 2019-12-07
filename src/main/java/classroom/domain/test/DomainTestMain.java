@@ -1,15 +1,14 @@
 package classroom.domain.test;
 
 import classroom.dal.entities.*;
-import classroom.dal.entities.Embeddable.CompositeName;
-import classroom.dal.entities.Embeddable.CourseRatingKey;
-import classroom.dal.hibernate.HibernateDBManager;
-import classroom.dal.primitives.Gender;
+import classroom.dal.entities.Embeddable.*;
+import classroom.dal.hibernate.*;
+import classroom.dal.primitives.*;
+import classroom.dal.roots.*;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
+import java.math.*;
+import java.time.*;
+import java.util.*;
 
 public class DomainTestMain
 {

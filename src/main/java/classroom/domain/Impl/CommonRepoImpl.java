@@ -1,12 +1,11 @@
 package classroom.domain.Impl;
 
-import classroom.dal.entities.BaseEntity;
-import classroom.dal.hibernate.HibernateDBManager;
-import classroom.domain.entities.CommonRepo;
-import org.hibernate.Criteria;
-import org.hibernate.Session;
+import classroom.dal.hibernate.*;
+import classroom.dal.roots.*;
+import classroom.domain.entities.*;
+import org.hibernate.*;
 
-import java.util.List;
+import java.util.*;
 
 public class CommonRepoImpl implements CommonRepo
 {
@@ -87,14 +86,14 @@ public class CommonRepoImpl implements CommonRepo
 	}
 
 	@Override
-	public <T extends BaseEntity> List findAll(BaseEntity entity)
+	public <T extends BaseEntity> List<T> findAll(Class<T> klass)
 	{
 		Session commonRepo = HibernateDBManager.getCommonRepo();
 		try
 		{
 			HibernateDBManager.beginTransaction();
-			Criteria criteria = commonRepo.createCriteria(entity.getClass());
-			List listOfFoundRows = criteria.list();
+			Criteria criteria = commonRepo.createCriteria(klass);
+			List<T> listOfFoundRows = (List<T>) criteria.list();
 			HibernateDBManager.commitTransaction();
 			return listOfFoundRows;
 		}

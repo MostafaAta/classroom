@@ -1,14 +1,13 @@
 package classroom.dal.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import java.io.Serializable;
-import java.util.List;
+import classroom.dal.roots.*;
+
+import javax.persistence.*;
 
 @Entity
-public class Instructor extends BaseEntity implements Serializable
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public class Instructor extends BaseEntity
 {
-	private String name;
 	private String address;
 	private String phone;
 	private String email;
@@ -17,28 +16,9 @@ public class Instructor extends BaseEntity implements Serializable
 	{
 	}
 
-	public Instructor(String name, String address, String phone, String email, List<Course> courses)
-	{
-		this.name = name;
-		this.address = address;
-		this.phone = phone;
-		this.email = email;
-		this.courses = courses;
-	}
-
 	public Instructor(Long id)
 	{
 		this.setId(id);
-	}
-
-	public String getName()
-	{
-		return name;
-	}
-
-	public void setName(String name)
-	{
-		this.name = name;
 	}
 
 	public String getAddress()

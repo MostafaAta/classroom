@@ -1,6 +1,6 @@
 package classroom.domain.test;
 
-import classroom.dal.entities.BaseEntity;
+import classroom.dal.roots.BaseEntity;
 import classroom.dal.hibernate.HibernateDBManager;
 import classroom.domain.Impl.CommonRepoImpl;
 import classroom.domain.entities.CommonRepo;
@@ -39,8 +39,8 @@ public class BusinessLogicCore
 		return commonRepo.find(klass, id);
 	}
 
-	public <T extends BaseEntity> List findAll(BaseEntity obj) throws Exception
+	public <T extends BaseEntity> List<T> findAll(Class<T> klass) throws Exception
 	{
-		return commonRepo.findAll(obj);
+		return commonRepo.findAll(klass);
 	}
 }
