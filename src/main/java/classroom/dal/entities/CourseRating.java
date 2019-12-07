@@ -10,7 +10,7 @@ import javax.persistence.*;
 import java.math.*;
 import java.util.*;
 
-@Entity
+@Entity(name = "course_rating")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class CourseRating extends BaseEntity
 {

@@ -4,7 +4,7 @@ import classroom.dal.entities.*;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "course_like_line")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class CourseLikeLine extends RootLine
 {

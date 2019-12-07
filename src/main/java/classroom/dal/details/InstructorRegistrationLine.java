@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.math.*;
 import java.time.*;
 
-@Entity
+@Entity(name = "instructor_reg_line")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class InstructorRegistrationLine extends RootLine
 {

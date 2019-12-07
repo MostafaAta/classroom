@@ -5,7 +5,7 @@ import classroom.dal.entities.*;
 import javax.persistence.*;
 import java.math.*;
 
-@Entity
+@Entity(name = "course_rating_line")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class CourseRatingLine extends RootLine
 {

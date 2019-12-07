@@ -11,7 +11,7 @@ import java.math.*;
 import java.time.*;
 import java.util.*;
 
-@Entity
+@Entity(name = "student_reg")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class StudentRegistration extends BaseEntity
 {
