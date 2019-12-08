@@ -3,10 +3,11 @@ package classroom.domain.test;
 import classroom.dal.details.*;
 import classroom.dal.entities.*;
 import classroom.dal.hibernate.*;
+import classroom.dal.roots.*;
+import classroom.dal.valueobjects.*;
 import org.hibernate.*;
 
 import java.math.*;
-import java.time.*;
 import java.util.*;
 
 public class NewTest
@@ -15,7 +16,7 @@ public class NewTest
 	private static List<Student> students = new ArrayList<>();
 	private static List<Course> courses = new ArrayList<>();
 	private static List<Instructor> instructors = new ArrayList<>();
-	private static BusinessLogicCore core;
+	private static BusinessLogicCore<BaseEntity> core;
 
 	private static void clearData(boolean forceClearData)
 	{
@@ -25,10 +26,8 @@ public class NewTest
 		clearData(CourseLike.class.getSimpleName());
 		clearData(CourseRatingLine.class.getSimpleName());
 		clearData(CourseRating.class.getSimpleName());
-		clearData(InstructorRegistrationLine.class.getSimpleName());
-		clearData(InstructorRegistration.class.getSimpleName());
-		clearData(StudentRegistrationLine.class.getSimpleName());
-		clearData(StudentRegistration.class.getSimpleName());
+		clearData(CourseRegistration.class.getSimpleName());
+		clearData(CourseRegistrationLine.class.getSimpleName());
 		clearData(Student.class.getSimpleName());
 		clearData(Instructor.class.getSimpleName());
 		clearData(Course.class.getSimpleName());
@@ -47,7 +46,7 @@ public class NewTest
 			HibernateDBManager.commitTransaction();
 			System.out.println(tableName + " is dropped with result : " + result);
 		}
-		catch (Exception e)
+		catch (Throwable e)
 		{
 			HibernateDBManager.rollbackTransaction();
 			e.printStackTrace();
@@ -59,13 +58,12 @@ public class NewTest
 		try
 		{
 			clearData(forceClearData);
-			core = new BusinessLogicCore();
+			core = new BusinessLogicCore<>();
 			addStudents();
 			addCourses();
 			addInstructors();
 			addCourseLike();
-			addInstructorRegistration();
-			addStudentRegistration();
+			addCourseRegistration();
 			addCourseRating();
 		}
 		catch (Throwable e)
@@ -130,40 +128,30 @@ public class NewTest
 		core.add(like);
 	}
 
-	private static void addInstructorRegistration() throws Throwable
+	private static void addCourseRegistration() throws Throwable
 	{
-		InstructorRegistration registration = new InstructorRegistration();
-		registration.setCode("Instructor Registration 1");
+		CourseRegistration registration = new CourseRegistration();
+		registration.setCode("Course Registration 1");
 		registration.setName1(registration.getCode());
 		registration.setName2(registration.getCode());
 		registration.setDetails(new ArrayList<>());
 		for (Instructor instructor : instructors)
 		{
-			InstructorRegistrationLine line = new InstructorRegistrationLine();
+			CourseRegistrationLine line = new CourseRegistrationLine();
 			registration.getDetails().add(line);
 			line.setCourse(courses.get(0));
-			line.setInstructor(instructor);
+			line.setEntityRef(EntityRef.fromReal(instructor));
 			line.setGrade(BigDecimal.valueOf(Math.random() * 151));
-			line.setRegisteredAt(LocalDateTime.now());
+			line.setRegisteredAt(new Date());
 		}
-		core.add(registration);
-	}
-
-	private static void addStudentRegistration() throws Throwable
-	{
-		StudentRegistration registration = new StudentRegistration();
-		registration.setCode("Student Registration 1");
-		registration.setName1(registration.getCode());
-		registration.setName2(registration.getCode());
-		registration.setDetails(new ArrayList<>());
 		for (Student student : students)
 		{
-			StudentRegistrationLine line = new StudentRegistrationLine();
+			CourseRegistrationLine line = new CourseRegistrationLine();
 			registration.getDetails().add(line);
 			line.setCourse(courses.get(0));
-			line.setStudent(student);
+			line.setEntityRef(EntityRef.fromReal(student));
 			line.setGrade(BigDecimal.valueOf(Math.random() * 151));
-			line.setRegisteredAt(LocalDateTime.now());
+			line.setRegisteredAt(new Date());
 		}
 		core.add(registration);
 	}

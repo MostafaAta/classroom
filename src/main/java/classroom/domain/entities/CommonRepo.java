@@ -4,15 +4,17 @@ import classroom.dal.roots.BaseEntity;
 
 import java.util.List;
 
-public interface CommonRepo
+public interface CommonRepo<T extends BaseEntity>
 {
-	<T extends BaseEntity> T add(T entity) throws Exception;
+	 T add(T entity) throws Throwable;
 
-	<T extends BaseEntity> T edit(T entity) throws Exception;
+	 T edit(T entity) throws Throwable;
 
-	<T extends BaseEntity> void delete(T entity) throws Exception;
+	 void delete(T entity) throws Throwable;
 
-	<T extends BaseEntity> T find(Class<T> klass, Long id) throws Exception;
+	 T find(Class<T> klass, Long id) throws Throwable;
 
-	<T extends BaseEntity> List<T> findAll(Class<T> klass) throws Exception;
+	 T find(String classType, Long id) throws Throwable;
+
+	 List<T> findAll(Class<T> klass) throws Throwable;
 }

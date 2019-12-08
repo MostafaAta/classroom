@@ -1,45 +1,50 @@
 package classroom.domain.test;
 
-import classroom.dal.roots.BaseEntity;
-import classroom.dal.hibernate.HibernateDBManager;
-import classroom.domain.Impl.CommonRepoImpl;
-import classroom.domain.entities.CommonRepo;
+import classroom.dal.hibernate.*;
+import classroom.dal.roots.*;
+import classroom.domain.Impl.*;
+import classroom.domain.entities.*;
 
-import java.util.List;
+import java.util.*;
 
-public class BusinessLogicCore
+public class BusinessLogicCore<T extends BaseEntity>
 {
-	private CommonRepo commonRepo;
+	private CommonRepo<T> commonRepo;
 
-	public BusinessLogicCore() throws Exception
+	public BusinessLogicCore() throws Throwable
 	{
-		commonRepo = new CommonRepoImpl();
+		commonRepo = new CommonRepoImpl<>();
 		String hibernateConfigFile = "hibernate.cfg.xml";
 		HibernateDBManager.setDbConfigFileName(hibernateConfigFile);
 		HibernateDBManager.buildSessionFactory();
 	}
 
-	public <T extends BaseEntity> T add(T entity) throws Exception
+	public T add(T entity) throws Throwable
 	{
 		return commonRepo.add(entity);
 	}
 
-	public <T extends BaseEntity> T edit(T obj) throws Exception
+	public T edit(T obj) throws Throwable
 	{
 		return commonRepo.edit(obj);
 	}
 
-	public <T extends BaseEntity> void delete(T entity) throws Exception
+	public void delete(T entity) throws Throwable
 	{
 		commonRepo.delete(entity);
 	}
 
-	public <T extends BaseEntity> T find(Class<T> klass, Long id) throws Exception
+	public T find(Class<T> klass, Long id) throws Throwable
 	{
 		return commonRepo.find(klass, id);
 	}
 
-	public <T extends BaseEntity> List<T> findAll(Class<T> klass) throws Exception
+	public T find(String classType, Long id) throws Throwable
+	{
+		return commonRepo.find(classType, id);
+	}
+
+	public List<T> findAll(Class<T> klass) throws Throwable
 	{
 		return commonRepo.findAll(klass);
 	}
