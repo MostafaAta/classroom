@@ -9,7 +9,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import java.util.*;
 
-@Entity
+@Entity(name = "course_like")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class CourseLike extends BaseEntity
 {
