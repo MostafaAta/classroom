@@ -1,15 +1,14 @@
 package classroom.dal.entities;
 
-import classroom.dal.details.*;
-import classroom.dal.roots.*;
-import org.hibernate.annotations.*;
+import classroom.dal.details.CourseLikeLine;
+import classroom.dal.roots.BaseEntity;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import java.util.*;
+import java.util.List;
 
-@Entity(name = "course_like")
+@Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class CourseLike extends BaseEntity
 {
@@ -18,7 +17,8 @@ public class CourseLike extends BaseEntity
 	@OneToOne
 	private Student student;
 	@Fetch(FetchMode.JOIN)
-	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
+	@JoinColumn(name = "courseLike_id")
+	@OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<CourseLikeLine> details;
 
 	public Course getCourse()

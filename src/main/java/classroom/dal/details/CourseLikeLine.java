@@ -1,10 +1,14 @@
 package classroom.dal.details;
 
-import classroom.dal.entities.*;
+import classroom.dal.entities.Course;
+import classroom.dal.entities.Student;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
 
-@Entity(name = "course_like_line")
+@Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class CourseLikeLine extends RootLine
 {
@@ -12,9 +16,6 @@ public class CourseLikeLine extends RootLine
 	private Course course;
 	@ManyToOne
 	private Student student;
-	@ManyToOne
-	@JoinColumn
-	CourseLike owner;
 
 	public Course getCourse()
 	{
@@ -34,15 +35,5 @@ public class CourseLikeLine extends RootLine
 	public void setStudent(Student student)
 	{
 		this.student = student;
-	}
-
-	public CourseLike getOwner()
-	{
-		return owner;
-	}
-
-	public void setOwner(CourseLike owner)
-	{
-		this.owner = owner;
 	}
 }

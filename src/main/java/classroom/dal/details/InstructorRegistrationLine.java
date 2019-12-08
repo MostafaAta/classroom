@@ -1,12 +1,16 @@
 package classroom.dal.details;
 
-import classroom.dal.entities.*;
+import classroom.dal.entities.Course;
+import classroom.dal.entities.Instructor;
 
-import javax.persistence.*;
-import java.math.*;
-import java.time.*;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
-@Entity(name = "instructor_reg_line")
+@Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class InstructorRegistrationLine extends RootLine
 {
@@ -16,9 +20,6 @@ public class InstructorRegistrationLine extends RootLine
 	private Instructor instructor;
 	private LocalDateTime registeredAt;
 	private BigDecimal grade;
-	@ManyToOne
-	@JoinColumn
-	InstructorRegistration owner;
 
 	public Course getCourse()
 	{
@@ -58,15 +59,5 @@ public class InstructorRegistrationLine extends RootLine
 	public void setGrade(BigDecimal grade)
 	{
 		this.grade = grade;
-	}
-
-	public InstructorRegistration getOwner()
-	{
-		return owner;
-	}
-
-	public void setOwner(InstructorRegistration owner)
-	{
-		this.owner = owner;
 	}
 }

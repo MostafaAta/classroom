@@ -9,7 +9,6 @@ import classroom.dal.primitives.Gender;
 import classroom.dal.roots.BaseEntity;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,7 +28,7 @@ public class DomainTestMain
 			//			deleteStudent();
 			//			addCourseRatings();
 			//			addCourseRegistration();
-			NewTest.createScenario(false);
+			NewTest.createScenario(true);
 		}
 		catch (Throwable e)
 		{
@@ -47,7 +46,6 @@ public class DomainTestMain
 			StudentRegistration registration = new StudentRegistration();
 			registration.setStudent(student);
 			registration.setCourse(course);
-			registration.setRegisteredAt(LocalDateTime.of(2019, 12, 20, 11, 2, 21));
 			registration.setGrade(BigDecimal.valueOf(4));
 			BaseEntity addedRegistration = core.add(registration);
 			showEntityResult(addedRegistration, "Added");

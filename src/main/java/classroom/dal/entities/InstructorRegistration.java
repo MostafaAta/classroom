@@ -1,17 +1,16 @@
 package classroom.dal.entities;
 
-import classroom.dal.details.*;
-import classroom.dal.roots.*;
-import org.hibernate.annotations.*;
+import classroom.dal.details.InstructorRegistrationLine;
+import classroom.dal.roots.BaseEntity;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
 import javax.persistence.*;
-import java.math.*;
-import java.time.*;
-import java.util.*;
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
 
-@Entity(name = "instructor_reg")
+@Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class InstructorRegistration extends BaseEntity
 {
@@ -19,10 +18,11 @@ public class InstructorRegistration extends BaseEntity
 	private Instructor instructor;
 	@OneToOne
 	private Course course;
-	private LocalDateTime registeredAt;
+	private Date registeredAt;
 	private BigDecimal grade;
 	@Fetch(FetchMode.JOIN)
-	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
+	@JoinColumn(name = "instructorRegistration_id")
+	@OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<InstructorRegistrationLine> details;
 
 	public InstructorRegistration()
@@ -49,12 +49,12 @@ public class InstructorRegistration extends BaseEntity
 		this.course = course;
 	}
 
-	public LocalDateTime getRegisteredAt()
+	public Date getRegisteredAt()
 	{
 		return registeredAt;
 	}
 
-	public void setRegisteredAt(LocalDateTime registeredAt)
+	public void setRegisteredAt(Date registeredAt)
 	{
 		this.registeredAt = registeredAt;
 	}

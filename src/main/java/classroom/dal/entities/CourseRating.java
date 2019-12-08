@@ -1,16 +1,15 @@
 package classroom.dal.entities;
 
-import classroom.dal.details.*;
-import classroom.dal.roots.*;
-import org.hibernate.annotations.*;
+import classroom.dal.details.CourseRatingLine;
+import classroom.dal.roots.BaseEntity;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
 import javax.persistence.*;
-import java.math.*;
-import java.util.*;
+import java.math.BigDecimal;
+import java.util.List;
 
-@Entity(name = "course_rating")
+@Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class CourseRating extends BaseEntity
 {
@@ -20,7 +19,8 @@ public class CourseRating extends BaseEntity
 	private Course course;
 	private BigDecimal rating;
 	@Fetch(FetchMode.JOIN)
-	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
+	@JoinColumn(name = "courseRating_id")
+	@OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<CourseRatingLine> details;
 
 	public CourseRating()

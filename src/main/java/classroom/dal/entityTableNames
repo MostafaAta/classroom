@@ -1,0 +1,14 @@
+
+
+// not used until now .. if we want to rename table we can it
+
+Entities Names                  |  Tables Names
+--------------------            |  ---------
+CourseLike                      |  course_like
+CourseRating                    |  course_rating
+InstructorRegistration          |  instructor_reg
+StudentRegistration             |  student_reg
+CourseLikeLine                  |  course_like_line
+CourseRatingLine                |  course_rating_line
+InstructorRegistrationLine      |  instructor_reg_line
+StudentRegistrationLine         |  student_reg_line

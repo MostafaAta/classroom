@@ -1,11 +1,12 @@
 package classroom.dal.details;
 
-import classroom.dal.entities.*;
+import classroom.dal.entities.Course;
+import classroom.dal.entities.Student;
 
 import javax.persistence.*;
-import java.math.*;
+import java.math.BigDecimal;
 
-@Entity(name = "course_rating_line")
+@Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class CourseRatingLine extends RootLine
 {
@@ -14,9 +15,6 @@ public class CourseRatingLine extends RootLine
 	@ManyToOne
 	private Student student;
 	private BigDecimal rating;
-	@ManyToOne
-	@JoinColumn
-	CourseRating owner;
 
 	public Course getCourse()
 	{
@@ -46,15 +44,5 @@ public class CourseRatingLine extends RootLine
 	public void setRating(BigDecimal rating)
 	{
 		this.rating = rating;
-	}
-
-	public CourseRating getOwner()
-	{
-		return owner;
-	}
-
-	public void setOwner(CourseRating owner)
-	{
-		this.owner = owner;
 	}
 }

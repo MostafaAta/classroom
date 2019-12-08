@@ -124,7 +124,6 @@ public class NewTest
 		{
 			CourseLikeLine line = new CourseLikeLine();
 			like.getDetails().add(line);
-			line.setOwner(like);
 			line.setCourse(courses.get(0));
 			line.setStudent(student);
 		}
@@ -142,7 +141,6 @@ public class NewTest
 		{
 			InstructorRegistrationLine line = new InstructorRegistrationLine();
 			registration.getDetails().add(line);
-			line.setOwner(registration);
 			line.setCourse(courses.get(0));
 			line.setInstructor(instructor);
 			line.setGrade(BigDecimal.valueOf(Math.random() * 151));
@@ -162,7 +160,6 @@ public class NewTest
 		{
 			StudentRegistrationLine line = new StudentRegistrationLine();
 			registration.getDetails().add(line);
-			line.setOwner(registration);
 			line.setCourse(courses.get(0));
 			line.setStudent(student);
 			line.setGrade(BigDecimal.valueOf(Math.random() * 151));
@@ -182,7 +179,6 @@ public class NewTest
 		{
 			CourseRatingLine line = new CourseRatingLine();
 			rating.getDetails().add(line);
-			line.setOwner(rating);
 			line.setCourse(courses.get(0));
 			line.setStudent(student);
 			line.setRating(BigDecimal.valueOf(Math.random() * 99 + 1));
