@@ -13,7 +13,7 @@ public class CommonRepoImpl<T extends BaseEntity> implements CommonRepo<T>
 {
 
 	@Override
-	public  T add(T entity)
+	public T add(T entity)
 	{
 		Session commonRepo = HibernateDBManager.getCommonRepo();
 		try
@@ -32,7 +32,7 @@ public class CommonRepoImpl<T extends BaseEntity> implements CommonRepo<T>
 	}
 
 	@Override
-	public  T edit(T entity)
+	public T edit(T entity)
 	{
 		Session commonRepo = HibernateDBManager.getCommonRepo();
 		try
@@ -51,7 +51,7 @@ public class CommonRepoImpl<T extends BaseEntity> implements CommonRepo<T>
 	}
 
 	@Override
-	public  void delete(T entity)
+	public void delete(T entity)
 	{
 		Session commonRepo = HibernateDBManager.getCommonRepo();
 		try
@@ -70,7 +70,7 @@ public class CommonRepoImpl<T extends BaseEntity> implements CommonRepo<T>
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public  T find(Class<T> klass, Long id)
+	public T find(Class<? extends Persistable> klass, Long id)
 	{
 		if (klass == null)
 			return null;
@@ -91,36 +91,36 @@ public class CommonRepoImpl<T extends BaseEntity> implements CommonRepo<T>
 	}
 
 	@Override
-	public  T find(String classType, Long id)
+	public T find(String classType, Long id)
 	{
 		return find(calculateClassFromType(classType), id);
 	}
 
 	@SuppressWarnings("unchecked")
-	private static <T extends Persistable> Class<T> calculateClassFromType(String classType)
+	private static Class<? extends Persistable> calculateClassFromType(String classType)
 	{
 		if (classType.equals(Student.class.getSimpleName()))
-			return (Class<T>) Student.class;
+			return Student.class;
 		if (classType.equals(Course.class.getSimpleName()))
-			return (Class<T>) Course.class;
+			return Course.class;
 		if (classType.equals(Instructor.class.getSimpleName()))
-			return (Class<T>) Instructor.class;
+			return Instructor.class;
 		if (classType.equals(CourseLike.class.getSimpleName()))
-			return (Class<T>) CourseLike.class;
+			return CourseLike.class;
 		if (classType.equals(CourseRating.class.getSimpleName()))
-			return (Class<T>) CourseRating.class;
+			return CourseRating.class;
 		if (classType.equals(User.class.getSimpleName()))
-			return (Class<T>) User.class;
+			return User.class;
 		if (classType.equals(CourseRatingLine.class.getSimpleName()))
-			return (Class<T>) CourseRatingLine.class;
+			return CourseRatingLine.class;
 		if (classType.equals(CourseLikeLine.class.getSimpleName()))
-			return (Class<T>) CourseLikeLine.class;
+			return CourseLikeLine.class;
 		return null;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public  List<T> findAll(Class<T> klass)
+	public List<T> findAll(Class<? extends Persistable> klass)
 	{
 		Session commonRepo = HibernateDBManager.getCommonRepo();
 		try

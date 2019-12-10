@@ -1,6 +1,6 @@
 package classroom.domain.entities;
 
-import classroom.dal.roots.BaseEntity;
+import classroom.dal.roots.*;
 
 import java.util.List;
 
@@ -12,9 +12,9 @@ public interface CommonRepo<T extends BaseEntity>
 
 	 void delete(T entity) throws Throwable;
 
-	 T find(Class<T> klass, Long id) throws Throwable;
+	 T find(Class<? extends Persistable> klass, Long id) throws Throwable;
 
 	 T find(String classType, Long id) throws Throwable;
 
-	 List<T> findAll(Class<T> klass) throws Throwable;
+	 List<T> findAll(Class<? extends Persistable> klass) throws Throwable;
 }

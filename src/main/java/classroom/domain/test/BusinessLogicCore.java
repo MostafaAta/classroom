@@ -34,7 +34,7 @@ public class BusinessLogicCore<T extends BaseEntity>
 		commonRepo.delete(entity);
 	}
 
-	public T find(Class<T> klass, Long id) throws Throwable
+	public T find(Class<? extends Persistable> klass, Long id) throws Throwable
 	{
 		return commonRepo.find(klass, id);
 	}
@@ -44,7 +44,7 @@ public class BusinessLogicCore<T extends BaseEntity>
 		return commonRepo.find(classType, id);
 	}
 
-	public List<T> findAll(Class<T> klass) throws Throwable
+	public List<T> findAll(Class<? extends Persistable> klass) throws Throwable
 	{
 		return commonRepo.findAll(klass);
 	}

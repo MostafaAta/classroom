@@ -173,4 +173,10 @@ public class NewTest
 		}
 		core.add(rating);
 	}
+
+	public static void showScenario() throws Throwable
+	{
+		core.findAll(Student.class);
+		core.findAll(CourseRating.class);
+	}
 }
