@@ -176,7 +176,15 @@ public class NewTest
 
 	public static void showScenario() throws Throwable
 	{
-		core.findAll(Student.class);
-		core.findAll(CourseRating.class);
+		showStudents(Student.class);
+	}
+
+	private static <T extends Persistable> void showStudents(Class<Student> studentClass) throws Throwable
+	{
+		List<BaseEntity> allStudents = core.findAll(studentClass);
+		for (BaseEntity student : allStudents)
+		{
+			student.toString();
+		}
 	}
 }

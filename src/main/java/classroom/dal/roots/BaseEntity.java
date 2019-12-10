@@ -41,5 +41,11 @@ public abstract class BaseEntity extends Persistable
 	{
 		this.name2 = name2;
 	}
+
+	@Override
+	public String toString()
+	{
+		return "code " + getCode() + "name1 " + getName1() + "name2 " + getName2();
+	}
 }
 

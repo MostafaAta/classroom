@@ -7,7 +7,7 @@ import classroom.domain.entities.*;
 
 import java.util.*;
 
-public class BusinessLogicCore<T extends BaseEntity>
+public class BusinessLogicCore<T extends Persistable>
 {
 	private CommonRepo<T> commonRepo;
 

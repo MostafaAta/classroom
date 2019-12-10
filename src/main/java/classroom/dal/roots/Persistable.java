@@ -19,4 +19,10 @@ public abstract class Persistable implements Serializable
 	{
 		this.id = id;
 	}
+
+	@Override
+	public String toString()
+	{
+		return " id " + getId();
+	}
 }

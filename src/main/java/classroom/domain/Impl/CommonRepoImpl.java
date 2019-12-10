@@ -1,15 +1,17 @@
 package classroom.domain.Impl;
 
-import classroom.dal.details.*;
+import classroom.dal.details.CourseLikeLine;
+import classroom.dal.details.CourseRatingLine;
 import classroom.dal.entities.*;
-import classroom.dal.hibernate.*;
-import classroom.dal.roots.*;
-import classroom.domain.entities.*;
-import org.hibernate.*;
+import classroom.dal.hibernate.HibernateDBManager;
+import classroom.dal.roots.Persistable;
+import classroom.domain.entities.CommonRepo;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
 
-import java.util.*;
+import java.util.List;
 
-public class CommonRepoImpl<T extends BaseEntity> implements CommonRepo<T>
+public class CommonRepoImpl<T extends Persistable> implements CommonRepo<T>
 {
 
 	@Override
