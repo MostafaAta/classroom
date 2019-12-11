@@ -1,14 +1,18 @@
 package classroom.domain.test;
 
-import classroom.dal.details.*;
+import classroom.dal.details.CourseLikeLine;
+import classroom.dal.details.CourseRatingLine;
+import classroom.dal.details.CourseRegistrationLine;
 import classroom.dal.entities.*;
-import classroom.dal.hibernate.*;
-import classroom.dal.roots.*;
-import classroom.dal.valueobjects.*;
-import org.hibernate.*;
+import classroom.dal.hibernate.HibernateDBManager;
+import classroom.dal.roots.Persistable;
+import classroom.dal.valueobjects.EntityRef;
+import org.hibernate.Session;
 
-import java.math.*;
-import java.util.*;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class NewTest
 {
@@ -192,16 +196,16 @@ public class NewTest
 
 	public void showScenario() throws Throwable
 	{
-		core = new BusinessLogicCore<>();
-		showStudents(Student.class);
+		showCourseRating(CourseRegistration.class);
 	}
 
-	private <T extends Persistable> void showStudents(Class<T> studentClass) throws Throwable
+	private <T extends Persistable> void showCourseRating(Class<T> courseRating) throws Throwable
 	{
-		List<T> allStudents = core.findAll(studentClass);
-		for (T student : allStudents)
+		List<T> allCourseRating = core.findAll(courseRating);
+		for (T rating : allCourseRating)
 		{
-			System.out.println(student);
+			System.out.println(rating);
+			System.out.println(((CourseRegistration) rating).getDetails());
 		}
 	}
 }

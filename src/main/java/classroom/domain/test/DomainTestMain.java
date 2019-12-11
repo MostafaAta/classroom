@@ -16,7 +16,7 @@ public class DomainTestMain
 			//			deleteStudent();
 			//			addCourseRatings();
 			//			addCourseRegistration();
-//			NewTest.createScenario(true);
+//			NewTest.instance().createScenario(true);
 			NewTest.instance().showScenario();
 		}
 		catch (Throwable e)

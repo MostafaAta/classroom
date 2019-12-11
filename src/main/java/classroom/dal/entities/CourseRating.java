@@ -20,7 +20,7 @@ public class CourseRating extends BaseEntity
 	private BigDecimal rating;
 	@Fetch(FetchMode.JOIN)
 	@JoinColumn(name = "courseRating_id")
-	@OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<CourseRatingLine> details;
 
 	public CourseRating()

@@ -56,4 +56,9 @@ public class Student extends BaseEntity
 		this.gender = gender;
 	}
 
+	@Override
+	public String toString()
+	{
+		return super.toString() + " Email:  " + getEmail() + " Gender: " + getGender() + " GPA: " + getGpa();
+	}
 }

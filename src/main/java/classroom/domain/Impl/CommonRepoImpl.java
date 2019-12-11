@@ -5,6 +5,8 @@ import classroom.dal.entities.*;
 import classroom.dal.hibernate.*;
 import classroom.dal.roots.*;
 import classroom.domain.entities.*;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
 
 import java.util.*;
 

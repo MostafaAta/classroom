@@ -45,7 +45,7 @@ public abstract class BaseEntity extends Persistable
 	@Override
 	public String toString()
 	{
-		return "code " + getCode() + "name1 " + getName1() + "name2 " + getName2();
+		return super.toString() + " code " + getCode() + " name1 " + getName1() + " name2 " + getName2();
 	}
 }
 
