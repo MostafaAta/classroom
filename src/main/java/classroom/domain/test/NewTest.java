@@ -16,9 +16,26 @@ public class NewTest
 	private static List<Student> students = new ArrayList<>();
 	private static List<Course> courses = new ArrayList<>();
 	private static List<Instructor> instructors = new ArrayList<>();
-	private static BusinessLogicCore<BaseEntity> core;
+	private static BusinessLogicCore core;
 
-	private static void clearData(boolean forceClearData)
+	public static NewTest instance()
+	{
+		return new NewTest();
+	}
+
+	public NewTest()
+	{
+		try
+		{
+			core = new BusinessLogicCore<>();
+		}
+		catch (Throwable e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+	private void clearData(boolean forceClearData)
 	{
 		if (!forceClearData && !clearData)
 			return;
@@ -34,7 +51,7 @@ public class NewTest
 		clearData(User.class.getSimpleName());
 	}
 
-	private static void clearData(String tableName)
+	private void clearData(String tableName)
 	{
 		try
 		{
@@ -53,12 +70,11 @@ public class NewTest
 		}
 	}
 
-	public static void createScenario(boolean forceClearData)
+	public void createScenario(boolean forceClearData)
 	{
 		try
 		{
 			clearData(forceClearData);
-			core = new BusinessLogicCore<>();
 			addStudents();
 			addCourses();
 			addInstructors();
@@ -72,7 +88,7 @@ public class NewTest
 		}
 	}
 
-	private static void addStudents() throws Throwable
+	private void addStudents() throws Throwable
 	{
 		for (int i = 0; i < 10; i++)
 		{
@@ -85,7 +101,7 @@ public class NewTest
 		}
 	}
 
-	private static void addCourses() throws Throwable
+	private void addCourses() throws Throwable
 	{
 		for (int i = 0; i < 1; i++)
 		{
@@ -98,7 +114,7 @@ public class NewTest
 		}
 	}
 
-	private static void addInstructors() throws Throwable
+	private void addInstructors() throws Throwable
 	{
 		for (int i = 0; i < 10; i++)
 		{
@@ -111,7 +127,7 @@ public class NewTest
 		}
 	}
 
-	private static void addCourseLike() throws Throwable
+	private void addCourseLike() throws Throwable
 	{
 		CourseLike like = new CourseLike();
 		like.setCode("Course like 1");
@@ -128,7 +144,7 @@ public class NewTest
 		core.add(like);
 	}
 
-	private static void addCourseRegistration() throws Throwable
+	private void addCourseRegistration() throws Throwable
 	{
 		CourseRegistration registration = new CourseRegistration();
 		registration.setCode("Course Registration 1");
@@ -156,7 +172,7 @@ public class NewTest
 		core.add(registration);
 	}
 
-	private static void addCourseRating() throws Throwable
+	private void addCourseRating() throws Throwable
 	{
 		CourseRating rating = new CourseRating();
 		rating.setCode("Rating 1");
@@ -174,17 +190,18 @@ public class NewTest
 		core.add(rating);
 	}
 
-	public static void showScenario() throws Throwable
+	public void showScenario() throws Throwable
 	{
+		core = new BusinessLogicCore<>();
 		showStudents(Student.class);
 	}
 
-	private static <T extends Persistable> void showStudents(Class<Student> studentClass) throws Throwable
+	private <T extends Persistable> void showStudents(Class<T> studentClass) throws Throwable
 	{
-		List<BaseEntity> allStudents = core.findAll(studentClass);
-		for (BaseEntity student : allStudents)
+		List<T> allStudents = core.findAll(studentClass);
+		for (T student : allStudents)
 		{
-			student.toString();
+			System.out.println(student);
 		}
 	}
 }
