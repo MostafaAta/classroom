@@ -1,18 +1,14 @@
 package classroom.domain.test;
 
-import classroom.dal.details.CourseLikeLine;
-import classroom.dal.details.CourseRatingLine;
-import classroom.dal.details.CourseRegistrationLine;
+import classroom.dal.details.*;
 import classroom.dal.entities.*;
-import classroom.dal.hibernate.HibernateDBManager;
-import classroom.dal.roots.Persistable;
-import classroom.dal.valueobjects.EntityRef;
-import org.hibernate.Session;
+import classroom.dal.hibernate.*;
+import classroom.dal.roots.*;
+import classroom.dal.valueobjects.*;
+import org.hibernate.*;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.math.*;
+import java.util.*;
 
 public class NewTest
 {
@@ -41,7 +37,7 @@ public class NewTest
 
 	private void clearData(boolean forceClearData)
 	{
-		if (!forceClearData && !clearData)
+		if (!forceClearData && clearData)
 			return;
 		clearData(CourseLikeLine.class.getSimpleName());
 		clearData(CourseLike.class.getSimpleName());
