@@ -81,11 +81,22 @@ public class NewTest
 			addCourseLike();
 			addCourseRegistration();
 			addCourseRating();
+			addUser();
 		}
 		catch (Throwable e)
 		{
 			e.printStackTrace();
 		}
+	}
+
+	private void addUser() throws Throwable
+	{
+		User user = new User();
+		user.setCode("00a");
+		user.setName1("mostafa");
+		user.setName2("atta");
+		user.setEmail("ata@gmail.com");
+		core.add(user);
 	}
 
 	private void addStudents() throws Throwable

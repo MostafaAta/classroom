@@ -1,16 +1,25 @@
 package classroom.dal.entities;
 
-import classroom.dal.roots.BaseEntity;
+import classroom.dal.roots.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class User extends BaseEntity
 {
+	String password;
 	private String email;
+
+	public String getPassword()
+	{
+		return password;
+	}
+
+	public void setPassword(String password)
+	{
+		this.password = password;
+	}
 
 	public String getEmail()
 	{
@@ -22,5 +31,10 @@ public class User extends BaseEntity
 		this.email = email;
 	}
 
+	@Override
+	public String toString()
+	{
+		return super.toString() + "Email " + getEmail();
+	}
 }
 
