@@ -110,8 +110,8 @@ public class CommonRepoImpl<T extends Persistable> implements CommonRepo<T>
 			return CourseLike.class;
 		if (classType.equals(CourseRating.class.getSimpleName()))
 			return CourseRating.class;
-		if (classType.equals(User.class.getSimpleName()))
-			return User.class;
+		if (classType.equals(ClassroomUser.class.getSimpleName()))
+			return ClassroomUser.class;
 		if (classType.equals(CourseRatingLine.class.getSimpleName()))
 			return CourseRatingLine.class;
 		if (classType.equals(CourseLikeLine.class.getSimpleName()))

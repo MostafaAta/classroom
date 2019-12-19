@@ -21,7 +21,7 @@ public class Login extends HttpServlet
 	{
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		if (validateUser(username, password))
+		if (validateClassroomUser(username, password))
 			request.getRequestDispatcher("/welcome.jsp").forward(request, response);
 		else
 		{
@@ -34,7 +34,7 @@ public class Login extends HttpServlet
 	{
 	}
 
-	private Boolean validateUser(String username, String password)
+	private Boolean validateClassroomUser(String username, String password)
 	{
 		try
 		{
@@ -42,15 +42,15 @@ public class Login extends HttpServlet
 			HibernateDBManager.buildSessionFactory();
 			Session commonRepo = HibernateDBManager.getCommonRepo();
 			HibernateDBManager.beginTransaction();
-			Criteria criteria = commonRepo.createCriteria(User.class);
-			criteria.add(Restrictions.gt("name1", username));
-			criteria.add(Restrictions.gt("name2", password));
+			Criteria criteria = commonRepo.createCriteria(ClassroomUser.class);
+			criteria.add(Restrictions.eq("name1", username));
+			criteria.add(Restrictions.eq("password", password));
 			List user = criteria.list();
+			if (user == null)
+				return false;
 			for (Object o : user)
-				System.out.println(((User) o).getName1() + " : " + ((User) o).getName2());
-			HibernateDBManager.commitTransaction();
-			if (user != null)
-				return true;
+				System.out.println(((ClassroomUser) o).getName1() + " : " + ((ClassroomUser) o).getName2());
+			return true;
 
 			//			core = new BusinessLogicCore<>();
 			//			Persistable foundUser = core.find(User.class, Long.valueOf(1));

@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class User extends BaseEntity
+public class ClassroomUser extends BaseEntity
 {
 	String password;
 	private String email;

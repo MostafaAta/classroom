@@ -21,7 +21,7 @@
         <mapping class="classroom.dal.entities.Instructor"/>
         <mapping class="classroom.dal.entities.CourseRegistration"/>
         <mapping class="classroom.dal.entities.Student"/>
-        <mapping class="classroom.dal.entities.User"/>
+        <mapping class="classroom.dal.entities.ClassroomUser"/>
         <mapping class="classroom.dal.details.CourseLikeLine"/>
         <mapping class="classroom.dal.details.CourseRatingLine"/>
         <mapping class="classroom.dal.details.CourseRegistrationLine"/>

@@ -48,7 +48,7 @@ public class NewTest
 		clearData(Student.class.getSimpleName());
 		clearData(Instructor.class.getSimpleName());
 		clearData(Course.class.getSimpleName());
-		clearData(User.class.getSimpleName());
+		clearData(ClassroomUser.class.getSimpleName());
 	}
 
 	private void clearData(String tableName)
@@ -91,11 +91,12 @@ public class NewTest
 
 	private void addUser() throws Throwable
 	{
-		User user = new User();
+		ClassroomUser user = new ClassroomUser();
 		user.setCode("00a");
 		user.setName1("mostafa");
 		user.setName2("atta");
 		user.setEmail("ata@gmail.com");
+		user.setPassword("123");
 		core.add(user);
 	}
 
