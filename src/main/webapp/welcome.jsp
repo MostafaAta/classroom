@@ -11,7 +11,7 @@
     <title>Welcome</title>
 </head>
 <body>
-<h1>Welcome</h1>
+<h1>Welcome ${username}</h1>
 <p>Dear : ${username}</p>
 <p>Your password : ${password}</p>
 </body>

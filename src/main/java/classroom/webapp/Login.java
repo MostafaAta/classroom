@@ -1,28 +1,32 @@
 package classroom.webapp;
 
-import classroom.dal.entities.*;
-import classroom.dal.hibernate.*;
-import classroom.domain.test.*;
-import org.hibernate.*;
-import org.hibernate.criterion.*;
+import classroom.dal.entities.ClassroomUser;
+import classroom.dal.hibernate.HibernateDBManager;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
-import javax.servlet.*;
-import javax.servlet.annotation.*;
-import javax.servlet.http.*;
-import java.io.*;
-import java.util.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "login")
 public class Login extends HttpServlet
 {
-	private static BusinessLogicCore core;
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		if (validateClassroomUser(username, password))
+		{
+			request.setAttribute("username", username);
+			request.setAttribute("password", password);
 			request.getRequestDispatcher("/welcome.jsp").forward(request, response);
+		}
 		else
 		{
 			request.setAttribute("errorMessage", "Invaild login username and password , Try again");
@@ -46,20 +50,13 @@ public class Login extends HttpServlet
 			criteria.add(Restrictions.eq("name1", username));
 			criteria.add(Restrictions.eq("password", password));
 			List user = criteria.list();
-			if (user == null)
+			if (user.size() == 0)
 				return false;
-			for (Object o : user)
-				System.out.println(((ClassroomUser) o).getName1() + " : " + ((ClassroomUser) o).getName2());
-			return true;
-
-			//			core = new BusinessLogicCore<>();
-			//			Persistable foundUser = core.find(User.class, Long.valueOf(1));
-			//			foundUser.toString();
 		}
 		catch (Throwable e)
 		{
 			e.printStackTrace();
 		}
-		return false;
+		return true;
 	}
 }
