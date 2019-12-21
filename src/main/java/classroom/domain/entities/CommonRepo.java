@@ -1,7 +1,7 @@
 package classroom.domain.entities;
 
 import classroom.dal.roots.Persistable;
-import classroom.domain.Impl.criteria.*;
+import classroom.domain.common.*;
 
 import java.util.List;
 
@@ -19,5 +19,5 @@ public interface CommonRepo<T extends Persistable>
 
 	List<T> findAll(Class<? extends Persistable> klass) throws Throwable;
 
-	List<T> findByCriteria(Class<? extends Persistable> klass, CriteriaBuilder... criteriaBuilder) throws Throwable;
+	List<T> findByCriteria(Class<? extends Persistable> klass, CriteriaBuilder... statments) throws Throwable;
 }

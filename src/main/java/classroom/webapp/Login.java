@@ -1,7 +1,7 @@
 package classroom.webapp;
 
 import classroom.dal.entities.*;
-import classroom.domain.Impl.criteria.*;
+import classroom.domain.common.*;
 import classroom.domain.test.*;
 
 import javax.servlet.*;

@@ -3,7 +3,7 @@ package classroom.domain.test;
 import classroom.dal.hibernate.*;
 import classroom.dal.roots.*;
 import classroom.domain.Impl.*;
-import classroom.domain.Impl.criteria.*;
+import classroom.domain.common.*;
 import classroom.domain.entities.*;
 
 import java.util.*;
@@ -50,8 +50,8 @@ public class BusinessLogicCore<T extends Persistable>
 		return commonRepo.findAll(klass);
 	}
 
-	public List<T> findByCriteria(Class<? extends Persistable> klass, CriteriaBuilder... criteriaBuilder) throws Throwable
+	public List<T> findByCriteria(Class<? extends Persistable> klass, CriteriaBuilder... statments) throws Throwable
 	{
-		return commonRepo.findByCriteria(klass, criteriaBuilder);
+		return commonRepo.findByCriteria(klass, statments);
 	}
 }

@@ -1,4 +1,4 @@
-package classroom.domain.Impl.criteria;
+package classroom.domain.common;
 
 import org.hibernate.*;
 import org.hibernate.criterion.*;

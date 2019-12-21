@@ -4,7 +4,7 @@ import classroom.dal.details.*;
 import classroom.dal.entities.*;
 import classroom.dal.hibernate.*;
 import classroom.dal.roots.*;
-import classroom.domain.Impl.criteria.*;
+import classroom.domain.common.*;
 import classroom.domain.entities.*;
 import org.hibernate.*;
 
@@ -141,14 +141,14 @@ public class CommonRepoImpl<T extends Persistable> implements CommonRepo<T>
 	}
 
 	@Override
-	public List<T> findByCriteria(Class<? extends Persistable> klass, CriteriaBuilder... criteriaBuilder)
+	public List<T> findByCriteria(Class<? extends Persistable> klass, CriteriaBuilder... statments)
 	{
 		Session commonRepo = HibernateDBManager.getCommonRepo();
 		try
 		{
 			HibernateDBManager.beginTransaction();
 			Criteria criteria = commonRepo.createCriteria(klass);
-			CriteriaStatementUtility.addRestrictionsToCriteriaFrom(Arrays.asList(criteriaBuilder), criteria);
+			CriteriaStatementUtility.addRestrictionsToCriteriaFrom(Arrays.asList(statments), criteria);
 			List entity = criteria.list();
 			HibernateDBManager.commitTransaction();
 			if (entity != null && !entity.isEmpty())

@@ -1,4 +1,4 @@
-package classroom.domain.Impl.criteria;
+package classroom.domain.common;
 
 public class CriteriaBuilder
 {
