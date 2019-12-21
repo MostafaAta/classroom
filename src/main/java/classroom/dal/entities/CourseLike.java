@@ -16,7 +16,6 @@ public class CourseLike extends BaseEntity
 	private Course course;
 	@OneToOne
 	private Student student;
-	@Fetch(FetchMode.JOIN)
 	@JoinColumn(name = "courseLike_id")
 	@OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<CourseLikeLine> details;

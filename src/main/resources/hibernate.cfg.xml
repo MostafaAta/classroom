@@ -5,7 +5,7 @@
 <hibernate-configuration>
     <session-factory>
         <property name="connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
-        <property name="connection.url">jdbc:sqlserver://localhost:1433;databaseName=stock;CharacterSet=UTF-8;</property>
+        <property name="connection.url">jdbc:sqlserver://localhost:1433;databaseName=classroom;CharacterSet=UTF-8;</property>
         <property name="connection.username">sa</property>
         <property name="connection.password">sa123</property>
         <property name="connection.pool_size">10</property>

@@ -19,7 +19,6 @@ public class CourseRegistration extends BaseEntity
 	private Course course;
 	private Date registeredAt;
 	private BigDecimal grade;
-	@Fetch(FetchMode.JOIN)
 	@JoinColumn(name = "courseRegistration_id")
 	@OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<CourseRegistrationLine> details;
