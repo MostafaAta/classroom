@@ -1,10 +1,8 @@
 package classroom.webapp;
 
 import classroom.dal.entities.*;
-import classroom.dal.hibernate.*;
 import classroom.domain.Impl.criteria.*;
 import classroom.domain.test.*;
-import org.hibernate.*;
 
 import javax.servlet.*;
 import javax.servlet.annotation.*;
@@ -43,27 +41,16 @@ public class Login extends HttpServlet
 		Map<String, String> map = new HashMap<>();
 		try
 		{
-			HibernateDBManager.setDbConfigFileName("hibernate.cfg.xml");
-			HibernateDBManager.buildSessionFactory();
-			Session commonRepo = HibernateDBManager.getCommonRepo();
-			HibernateDBManager.beginTransaction();
-			Criteria criteria = commonRepo.createCriteria(ClassroomUser.class);
+			core = new BusinessLogicCore();
 			CriteriaBuilder name1 = CriteriaBuilder.createInstanceFor("name1", CriteriaStatementUtility.EQUAL, username);
 			CriteriaBuilder password1 = CriteriaBuilder.createInstanceFor("password", CriteriaStatementUtility.EQUAL, password);
-			CriteriaStatementUtility.addRestrictionsToCriteriaFrom(Arrays.asList(name1, password1), criteria);
-			List user = criteria.list();
-			if (user == null || user.isEmpty())
+			List foundEntity = core.findByCriteria(ClassroomUser.class, name1, password1);
+			if (foundEntity == null)
 			{
 				map.put(ERROR_MESSAGE, "Inavlid username and password, try again");
 				return map;
 			}
-			for (Object o : user)
-				System.out.println(((ClassroomUser) o).getName1() + " : " + ((ClassroomUser) o).getName2());
 			return map;
-
-			//			core = new BusinessLogicCore<>();
-			//			Persistable foundUser = core.find(User.class, Long.valueOf(1));
-			//			foundUser.toString();
 		}
 		catch (Throwable e)
 		{
