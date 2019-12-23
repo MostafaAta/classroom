@@ -9,20 +9,28 @@
 <html>
 <head>
     <title>Login Page</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
-<h1>Please .. Login</h1>
-<form action="/classroom/login" method="post">
-    <fieldset>
-        <legend>Legend</legend>
-        Username : <input type="text" name="username"/> <br><br>
-        Password : <input type="password" name="password"/> <br><br>
-        <input type="submit" value="login"/>
-    </fieldset>
-</form>
-
 <p style="color: red;">${errorMessage}</p>
+
+<form action="/classroom/login" method="post">
+
+    <div class="login-box">
+        <h1>Login</h1>
+        <div class="textbox">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <input type="text" placeholder="Username" name="username" required>
+        </div>
+        <div class="textbox">
+            <i class="fa fa-lock" aria-hidden="true"></i>
+            <input type="password" placeholder="Password" name="password" required>
+        </div>
+        <input class="btn" type="submit" value="login">
+    </div>
+
+</form>
 
 </body>
 </html>
