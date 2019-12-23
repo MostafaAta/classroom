@@ -8,6 +8,11 @@ body {
     background-size: cover;
 }
 
+p {
+    margin: 80px 80px;
+    text-align: center;
+}
+
 .login-box {
     width: 280px;
     position: absolute;
