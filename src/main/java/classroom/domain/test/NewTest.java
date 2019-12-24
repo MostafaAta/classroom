@@ -5,7 +5,9 @@ import classroom.dal.entities.*;
 import classroom.dal.hibernate.*;
 import classroom.dal.roots.*;
 import classroom.dal.valueobjects.*;
+import classroom.domain.common.*;
 import org.hibernate.*;
+import org.hibernate.criterion.*;
 
 import java.math.*;
 import java.util.*;
@@ -204,7 +206,18 @@ public class NewTest
 
 	public void showScenario() throws Throwable
 	{
-		showCourseRating(CourseRegistration.class);
+		//		showCourseRating(CourseRegistration.class);
+		showStudents(Student.class);
+	}
+
+	private <T extends Persistable> void showStudents(Class<T> studentClass) throws Throwable
+	{
+		CriteriaBuilder criteria = CriteriaBuilder.createInstanceFor("name1", CriteriaStatementUtility.like, "1");
+		List<T> byLikeList = core.findByLike(studentClass, MatchMode.END, criteria);
+		for (T o : byLikeList)
+		{
+			System.out.println(((Student) o).getName1());
+		}
 	}
 
 	private <T extends Persistable> void showCourseRating(Class<T> courseRating) throws Throwable

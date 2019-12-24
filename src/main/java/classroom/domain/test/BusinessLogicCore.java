@@ -5,6 +5,7 @@ import classroom.dal.roots.*;
 import classroom.domain.Impl.*;
 import classroom.domain.common.*;
 import classroom.domain.entities.*;
+import org.hibernate.criterion.*;
 
 import java.util.*;
 
@@ -53,5 +54,10 @@ public class BusinessLogicCore<T extends Persistable>
 	public List<T> findByCriteria(Class<? extends Persistable> klass, CriteriaBuilder... statments) throws Throwable
 	{
 		return commonRepo.findByCriteria(klass, statments);
+	}
+
+	public List<T> findByLike(Class<? extends Persistable> klass, MatchMode matchMode, CriteriaBuilder... statements) throws Throwable
+	{
+		return commonRepo.findByLike(klass, matchMode, statements);
 	}
 }

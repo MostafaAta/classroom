@@ -1,9 +1,10 @@
 package classroom.domain.entities;
 
-import classroom.dal.roots.Persistable;
+import classroom.dal.roots.*;
 import classroom.domain.common.*;
+import org.hibernate.criterion.*;
 
-import java.util.List;
+import java.util.*;
 
 public interface CommonRepo<T extends Persistable>
 {
@@ -20,4 +21,6 @@ public interface CommonRepo<T extends Persistable>
 	List<T> findAll(Class<? extends Persistable> klass) throws Throwable;
 
 	List<T> findByCriteria(Class<? extends Persistable> klass, CriteriaBuilder... statments) throws Throwable;
+
+	List<T> findByLike(Class<? extends Persistable> klass, MatchMode matchMode, CriteriaBuilder... statements) throws Throwable;
 }

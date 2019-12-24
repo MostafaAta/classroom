@@ -7,6 +7,7 @@ import classroom.dal.roots.*;
 import classroom.domain.common.*;
 import classroom.domain.entities.*;
 import org.hibernate.*;
+import org.hibernate.criterion.*;
 
 import java.util.*;
 
@@ -153,6 +154,28 @@ public class CommonRepoImpl<T extends Persistable> implements CommonRepo<T>
 			HibernateDBManager.commitTransaction();
 			if (entity != null && !entity.isEmpty())
 				return (List<T>) entity;
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			HibernateDBManager.rollbackTransaction();
+		}
+		return null;
+	}
+
+	@Override
+	public List<T> findByLike(Class<? extends Persistable> klass, MatchMode matchMode, CriteriaBuilder... criteriaBuilder) throws Throwable
+	{
+		Session commonRepo = HibernateDBManager.getCommonRepo();
+		try
+		{
+			HibernateDBManager.beginTransaction();
+			Criteria criteria = commonRepo.createCriteria(klass);
+			CriteriaStatementUtility.findByLike(Arrays.asList(criteriaBuilder), matchMode, criteria);
+			List foundList = criteria.list();
+			HibernateDBManager.commitTransaction();
+			if (foundList != null)
+				return foundList;
 		}
 		catch (Exception e)
 		{
