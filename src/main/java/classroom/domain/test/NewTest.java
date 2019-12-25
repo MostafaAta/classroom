@@ -229,4 +229,22 @@ public class NewTest
 			System.out.println(((CourseRegistration) rating).getDetails());
 		}
 	}
+
+	public void editScenario() throws Throwable
+	{
+		editStudents(Student.class);
+	}
+
+	private <T extends Persistable> void editStudents(Class<T> studentClass) throws Throwable
+	{
+		CriteriaBuilder criteria = CriteriaBuilder.createInstanceFor("name1", CriteriaStatementUtility.like, "student");
+		List<Student> foundStudents = core.findByLike(studentClass, MatchMode.ANYWHERE, criteria);
+		for (Student foundStudent : foundStudents)
+		{
+			System.out.println("found student is : " + foundStudent.getName1());
+			foundStudent.setName1("New" + foundStudent.getName1());
+			foundStudent.setName2("New" + foundStudent.getName2());
+			System.out.println(foundStudent.getName1());
+		}
+	}
 }
