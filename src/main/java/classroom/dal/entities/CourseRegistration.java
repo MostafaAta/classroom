@@ -3,11 +3,8 @@ package classroom.dal.entities;
 import classroom.dal.details.*;
 import classroom.dal.roots.*;
 import classroom.dal.valueobjects.*;
-import org.hibernate.annotations.*;
 
 import javax.persistence.*;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
 import java.math.*;
 import java.util.*;
 

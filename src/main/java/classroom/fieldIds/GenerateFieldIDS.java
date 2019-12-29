@@ -1,5 +1,7 @@
 package classroom.fieldIds;
 
+import classroom.dal.entities.*;
+
 public class GenerateFieldIDS
 {
 	public static void main(String[] args)

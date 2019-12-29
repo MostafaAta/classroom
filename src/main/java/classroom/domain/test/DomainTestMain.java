@@ -1,5 +1,8 @@
 package classroom.domain.test;
 
+import classroom.dal.entities.*;
+import classroom.dal.roots.*;
+
 public class DomainTestMain
 {
 	public static void main(String[] args)

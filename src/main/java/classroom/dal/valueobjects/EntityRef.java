@@ -35,7 +35,7 @@ public class EntityRef
 	{
 		try
 		{
-			BusinessLogicCore<T> core = new BusinessLogicCore<>();
+			BusinessLogicCore<T> core = (BusinessLogicCore<T>) BusinessLogicCore.get();
 			return core.find(ref.getClassType(), ref.getId());
 		}
 		catch (Throwable e)

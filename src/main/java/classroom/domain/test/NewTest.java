@@ -29,7 +29,7 @@ public class NewTest
 	{
 		try
 		{
-			core = new BusinessLogicCore<>();
+			core = BusinessLogicCore.get();
 		}
 		catch (Throwable e)
 		{

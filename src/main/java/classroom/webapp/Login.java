@@ -34,6 +34,7 @@ public class Login extends HttpServlet
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
+		doPost(request,response);
 	}
 
 	private Map<String, String> validateClassroomUser(String username, String password)
@@ -41,13 +42,13 @@ public class Login extends HttpServlet
 		Map<String, String> map = new HashMap<>();
 		try
 		{
-			core = new BusinessLogicCore();
+			core = BusinessLogicCore.get();
 			CriteriaBuilder name1 = CriteriaBuilder.createInstanceFor("name1", CriteriaStatementUtility.EQUAL, username);
 			CriteriaBuilder password1 = CriteriaBuilder.createInstanceFor("password", CriteriaStatementUtility.EQUAL, password);
-			List foundEntity = core.findByCriteria(ClassroomUser.class, name1, password1);
+			List<ClassroomUser> foundEntity = core.findByCriteria(ClassroomUser.class, name1, password1);
 			if (foundEntity == null)
 			{
-				map.put(ERROR_MESSAGE, "Inavlid username and password, try again");
+				map.put(ERROR_MESSAGE, "Invalid username and password, try again");
 				return map;
 			}
 			return map;

@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class ClassroomUser extends BaseEntity
 {
-	String password;
+	private String password;
 	private String email;
 
 	public String getPassword()

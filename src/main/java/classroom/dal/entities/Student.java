@@ -1,12 +1,10 @@
 package classroom.dal.entities;
 
-import classroom.dal.primitives.Gender;
-import classroom.dal.roots.BaseEntity;
+import classroom.dal.primitives.*;
+import classroom.dal.roots.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import java.math.BigDecimal;
+import javax.persistence.*;
+import java.math.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)

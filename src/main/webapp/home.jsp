@@ -1,38 +1,19 @@
-<%@ page import="classroom.dal.entities.*" %>
-<%@ page import="classroom.domain.test.*" %>
-<%@ page import="java.util.*" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: MOSTAFA
-  Date: 12/17/2019
-  Time: 9:25 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%! BusinessLogicCore core; %>
 <%
-    List<Student> allStudents = new ArrayList<>();
-    try
-    {
-        core = new BusinessLogicCore<>();
-        allStudents = core.findAll(Student.class);
-        for (Student student : allStudents)
-            student.getName1();
-
-    }
-    catch (Exception e)
-    {
-        e.printStackTrace();
-    }
+    Class<? extends BaseEntity> klass = (Class<? extends BaseEntity>) request.getAttribute("class");
+    if (klass == null)
+        request.setAttribute("class", Course.class);
 %>
-
-
+<jsp:include page="/list_view_servlet"/>
+<%@ page import="classroom.dal.entities.*" %>
+<%@ page import="classroom.dal.roots.*" %>
+<%@ page import="classroom.domain.common.*" %>
+<%@ page import="java.util.*" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Home Page</title>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js">
-    </script>
     <link href="home-style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
     <script>
         function openSlideMenu() {
             document.getElementById("menu").style.width = '250px';
@@ -46,54 +27,65 @@
     </script>
 </head>
 <body>
-<div id="content">
-
-    <span class="slide">
+<form action="${pageContext.request.contextPath}/switcher" method="post">
+    <div id="content">
+        <span class="slide">
         <a href="#" onclick="openSlideMenu()">
             <i class="fas fa-bars"></i>
         </a>
-    </span>
+        </span>
+        <div id="menu" class="nav">
+            <a href="#" class="close" onclick="closeSlideMenu()">
+                <i class="fas fa-times"></i>
+            </a>
+            <input class="menu_btn" type="submit" value="Student" name="class"/>
+            <input class="menu_btn" type="submit" value="Course" name="class"/>
+            <input class="menu_btn" type="submit" value="Instructor" name="class"/>
+            <input class="menu_btn" type="submit" value="CourseLike" name="class"/>
+            <input class="menu_btn" type="submit" value="CourseRegistration" name="class"/>
+            <input class="menu_btn" type="submit" value="CourseRating" name="class"/>
+        </div>k
+        <div class="limiter">
 
-    <div id="menu" class="nav">
-        <a href="#" class="close" onclick="closeSlideMenu()">
-            <i class="fas fa-times"></i>
-        </a>
-        <a href="#">Student</a>
-        <a href="#">Course</a>
-        <a href="#">Instructors</a>
-        <a href="#">Course Likes</a>
-        <a href="#">Course Registration</a>
-        <a href="#">Course Rating</a>
+            <h1 style="text-align: center; font-size: 25px; margin: 1px;"><%=request.getAttribute("class_name") + " Table"%>
+            </h1>
+            <div class="container-table100">
+                <div class="wrap-table100">
+                    <div class="table">
+                        <div class="row header">
+                            <% for (int i = 0; i < TableUIUtil.tableHeaders((Class<? extends BaseEntity>) request.getAttribute("class")).size(); i++)
+                            {%>
+                            <div class="cell">
+                                <%=TableUIUtil.tableHeaders(Student.class).get(i).getName()%>
+                            </div>
+                            <%}%>
+                        </div>
+                        <% List<? extends BaseEntity> list = (List<? extends BaseEntity>) request.getAttribute("list");
+                            for (int i = 0; i < list.size(); i++)
+                            {
+                                BaseEntity entity = list.get(i);
+                                String row_class = "row odd";
+                                if (i % 2 == 1)
+                                    row_class = "row even";
+                        %>
+                        <div class="<%=row_class%>">
+                            <%
+                                List<FieldMetaData> fields = FieldMetaDataUtil.createFieldsMetaDataFrom(entity);
+                                for (FieldMetaData field : fields)
+                                {
+                            %>
+                            <div class="cell">
+                                <%= field.getValue()%>
+                            </div>
+                            <% }%>
+                        </div>
+                        <%}%>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <h1>Welcome to our Classroom - Home Page Content - (Responsive - ya hoda)</h1>
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-        </tr>
-        <%
-            for (Student student : allStudents)
-            {
-        %>
-        <tr>
-            <td><%= student.getId()%>
-            </td>
-            <td><%= student.getName1()%>
-            </td>
-            <td>
-                <%= student.getEmail()%>
-                <% System.out.println();%>
-            </td>
-        </tr>
-
-        <%
-            }
-        %>
-    </table>
-    <%--    <a href="addStudent.html"></a>--%>
-</div>
+</form>
 
 </body>
 </html>

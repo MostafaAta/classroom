@@ -13,12 +13,21 @@ public class BusinessLogicCore<T extends Persistable>
 {
 	private CommonRepo<T> commonRepo;
 
-	public BusinessLogicCore() throws Throwable
+	public static BusinessLogicCore<? extends BaseEntity> instance;
+
+	public static BusinessLogicCore<? extends BaseEntity> get() throws Throwable
 	{
-		commonRepo = new CommonRepoImpl<>();
+		if (instance != null)
+			return instance;
+		return new BusinessLogicCore<>();
+	}
+
+	private BusinessLogicCore() throws Throwable
+	{
 		String hibernateConfigFile = "hibernate.cfg.xml";
 		HibernateDBManager.setDbConfigFileName(hibernateConfigFile);
 		HibernateDBManager.buildSessionFactory();
+		commonRepo = new CommonRepoImpl<>();
 	}
 
 	public T add(T entity) throws Throwable

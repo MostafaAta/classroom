@@ -1,6 +1,9 @@
 package classroom.dal.roots;
 
+import classroom.domain.common.*;
+
 import javax.persistence.*;
+import java.util.*;
 
 @MappedSuperclass
 public abstract class BaseEntity extends Persistable
@@ -46,6 +49,26 @@ public abstract class BaseEntity extends Persistable
 	public String toString()
 	{
 		return super.toString() + " code " + getCode() + " name1 " + getName1() + " name2 " + getName2();
+	}
+
+	public void addFieldMetaDataTo(List<FieldMetaData> metaData)
+	{
+		if (metaData == null)
+			return;
+		metaData.add(new FieldMetaData("ID", UIFieldType.IntegerNumber, getId()));
+		metaData.add(new FieldMetaData("Code", UIFieldType.Text, getCode()));
+		metaData.add(new FieldMetaData("Name1", UIFieldType.Text, getName1()));
+		metaData.add(new FieldMetaData("Name2", UIFieldType.Text, getName2()));
+	}
+
+	public List<TableHeaderMetaData> tableHeaders()
+	{
+		List<TableHeaderMetaData> metaData = new ArrayList<>();
+		metaData.add(new TableHeaderMetaData("ID", 0));
+		metaData.add(new TableHeaderMetaData("Code", 1));
+		metaData.add(new TableHeaderMetaData("Name1", 2));
+		metaData.add(new TableHeaderMetaData("Name2", 3));
+		return metaData;
 	}
 }
 

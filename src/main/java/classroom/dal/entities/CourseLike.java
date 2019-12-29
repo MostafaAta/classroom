@@ -1,12 +1,10 @@
 package classroom.dal.entities;
 
-import classroom.dal.details.CourseLikeLine;
-import classroom.dal.roots.BaseEntity;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+import classroom.dal.details.*;
+import classroom.dal.roots.*;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
