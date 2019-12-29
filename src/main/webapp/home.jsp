@@ -44,7 +44,7 @@
             <input class="menu_btn" type="submit" value="CourseLike" name="class"/>
             <input class="menu_btn" type="submit" value="CourseRegistration" name="class"/>
             <input class="menu_btn" type="submit" value="CourseRating" name="class"/>
-        </div>k
+        </div>
         <div class="limiter">
 
             <h1 style="text-align: center; font-size: 25px; margin: 1px;"><%=request.getAttribute("class_name") + " Table"%>
