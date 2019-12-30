@@ -27,16 +27,6 @@
         <url-pattern>/list_view_servlet</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>switcher</servlet-name>
-        <servlet-class>classroom.webapp.servlets.Switcher</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>switcher</servlet-name>
-        <url-pattern>/switcher</url-pattern>
-    </servlet-mapping>
-
     <welcome-file-list>
         <welcome-file>/home.jsp</welcome-file>
     </welcome-file-list>

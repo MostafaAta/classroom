@@ -2,9 +2,11 @@ package classroom.dal.entities;
 
 import classroom.dal.primitives.*;
 import classroom.dal.roots.*;
+import classroom.domain.common.*;
 
 import javax.persistence.*;
 import java.math.*;
+import java.util.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -58,5 +60,20 @@ public class Student extends BaseEntity
 	public String toString()
 	{
 		return super.toString() + " Email:  " + getEmail() + " Gender: " + getGender() + " GPA: " + getGpa();
+	}
+
+	@Override
+	public void addFieldMetaDataTo(List<FieldMetaData> metaData)
+	{
+		super.addFieldMetaDataTo(metaData);
+		metaData.add(new FieldMetaData("Email", UIFieldType.IntegerNumber, "1.1@1.com"));
+	}
+
+	@Override
+	public List<TableHeaderMetaData> tableHeaders()
+	{
+		List<TableHeaderMetaData> metaData = super.tableHeaders();
+		metaData.add(new TableHeaderMetaData("Email", -1));
+		return metaData;
 	}
 }

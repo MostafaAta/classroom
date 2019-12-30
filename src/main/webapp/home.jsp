@@ -12,6 +12,8 @@
 <html>
 <head>
     <title>Home Page</title>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js">
+    </script>
     <link href="home-style.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <script>
@@ -27,7 +29,7 @@
     </script>
 </head>
 <body>
-<form action="${pageContext.request.contextPath}/switcher" method="post">
+<form action="${pageContext.request.contextPath}/list_view_servlet" method="post">
     <div id="content">
         <span class="slide">
         <a href="#" onclick="openSlideMenu()">
@@ -53,10 +55,12 @@
                 <div class="wrap-table100">
                     <div class="table">
                         <div class="row header">
-                            <% for (int i = 0; i < TableUIUtil.tableHeaders((Class<? extends BaseEntity>) request.getAttribute("class")).size(); i++)
-                            {%>
+                            <% List<TableHeaderMetaData> headers = TableUIUtil
+                                    .tableHeaders((Class<? extends BaseEntity>) request.getAttribute("class"));
+                                for (int i = 0; i < headers.size(); i++)
+                                {%>
                             <div class="cell">
-                                <%=TableUIUtil.tableHeaders(Student.class).get(i).getName()%>
+                                <%=headers.get(i).getName()%>
                             </div>
                             <%}%>
                         </div>
