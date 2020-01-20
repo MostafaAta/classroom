@@ -17,14 +17,32 @@
         <servlet-name>login</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
+
     <servlet>
         <servlet-name>list_view_servlet</servlet-name>
         <servlet-class>classroom.webapp.servlets.ListViewServlet</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>list_view_servlet</servlet-name>
         <url-pattern>/list_view_servlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>edit</servlet-name>
+        <servlet-class>classroom.webapp.servlets.EditEntity</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>edit</servlet-name>
+        <url-pattern>/edit</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>delete</servlet-name>
+        <servlet-class>classroom.webapp.servlets.DeleteEntity</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>delete</servlet-name>
+        <url-pattern>/delete</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>

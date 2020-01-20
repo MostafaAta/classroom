@@ -23,4 +23,6 @@ public interface CommonRepo<T extends Persistable>
 	List<T> findByCriteria(Class<? extends Persistable> klass, CriteriaBuilder... statments) throws Throwable;
 
 	List<T> findByLike(Class<? extends Persistable> klass, MatchMode matchMode, CriteriaBuilder... statements) throws Throwable;
+
+	void deleteById(Class<? extends Persistable> klass, Long id) throws Throwable;
 }

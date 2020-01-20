@@ -15,17 +15,18 @@ public class ListViewServlet extends HttpServlet
 {
 	private Class<? extends BaseEntity> entityClass;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		request.setAttribute("class", calculateClassFrom(request.getParameter("class")));
-		request.setAttribute("fromPost", true);
-		Object get = request.getAttribute("fromGet");
-		if (get == null || !(Boolean) get)
-			doGet(request, response);
+		entityClass = calculateClassFrom(request.getParameter("class"));
+		request.setAttribute("list", listEntities());
+		request.setAttribute("class", entityClass);
+		request.setAttribute("class_name", entityClass.getSimpleName());
+		request.getRequestDispatcher("/home.jsp").forward(request, response);
 	}
 
-	private Class<? extends BaseEntity> calculateClassFrom(String className)
+	public static Class<? extends BaseEntity> calculateClassFrom(String className)
 	{
+		className = className == null ? "Course" : className;
 		switch (className)
 		{
 		case "Student":
@@ -42,20 +43,6 @@ public class ListViewServlet extends HttpServlet
 			return CourseRating.class;
 		}
 		return null;
-	}
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-	{
-		entityClass = (Class<? extends BaseEntity>) request.getAttribute("class");
-		request.setAttribute("list", listEntities());
-		request.setAttribute("class_name", entityClass.getSimpleName());
-		Object post = request.getAttribute("fromPost");
-		if (post != null && (Boolean) post)
-		{
-			request.setAttribute("fromPost", false);
-			request.setAttribute("fromGet", true);
-			request.getRequestDispatcher("/home.jsp").forward(request, response);
-		}
 	}
 
 	private List<? extends BaseEntity> listEntities() throws ServletException

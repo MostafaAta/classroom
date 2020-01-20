@@ -45,6 +45,11 @@ public class BusinessLogicCore<T extends Persistable>
 		commonRepo.delete(entity);
 	}
 
+	public void deleteById(Class<? extends Persistable> klass, Long id) throws Throwable
+	{
+		commonRepo.deleteById(klass, id);
+	}
+
 	public T find(Class<? extends Persistable> klass, Long id) throws Throwable
 	{
 		return commonRepo.find(klass, id);

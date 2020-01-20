@@ -1,10 +1,3 @@
-<%
-    Class<? extends BaseEntity> klass = (Class<? extends BaseEntity>) request.getAttribute("class");
-    if (klass == null)
-        request.setAttribute("class", Course.class);
-%>
-<jsp:include page="/list_view_servlet"/>
-<%@ page import="classroom.dal.entities.*" %>
 <%@ page import="classroom.dal.roots.*" %>
 <%@ page import="classroom.domain.common.*" %>
 <%@ page import="java.util.*" %>
@@ -29,67 +22,84 @@
     </script>
 </head>
 <body>
-<form action="${pageContext.request.contextPath}/list_view_servlet" method="post">
-    <div id="content">
+<div id="content">
         <span class="slide">
         <a href="#" onclick="openSlideMenu()">
             <i class="fas fa-bars"></i>
         </a>
         </span>
-        <div id="menu" class="nav">
-            <a href="#" class="close" onclick="closeSlideMenu()">
-                <i class="fas fa-times"></i>
-            </a>
-            <input class="menu_btn" type="submit" value="Student" name="class"/>
-            <input class="menu_btn" type="submit" value="Course" name="class"/>
-            <input class="menu_btn" type="submit" value="Instructor" name="class"/>
-            <input class="menu_btn" type="submit" value="CourseLike" name="class"/>
-            <input class="menu_btn" type="submit" value="CourseRegistration" name="class"/>
-            <input class="menu_btn" type="submit" value="CourseRating" name="class"/>
-        </div>
-        <div class="limiter">
+    <div id="menu" class="nav">
+        <a href="#" class="close" onclick="closeSlideMenu()">
+            <i class="fas fa-times"></i>
+        </a>
+        <a href="list_view_servlet?class=Student">Student</a>
+        <a href="list_view_servlet?class=Course">Course</a>
+        <a href="list_view_servlet?class=Instructor">Instructors</a>
+        <a href="list_view_servlet?class=CourseLike">Course Likes</a>
+        <a href="list_view_servlet?class=CourseRegistration">Course Registration</a>
+        <a href="list_view_servlet?class=CourseRating">Course Rating</a>
+    </div>
+    <%
+        if (request.getAttribute("class") != null)
+        {
+    %>
+    <div class="limiter">
 
-            <h1 style="text-align: center; font-size: 25px; margin: 1px;"><%=request.getAttribute("class_name") + " Table"%>
-            </h1>
-            <div class="container-table100">
-                <div class="wrap-table100">
-                    <div class="table">
-                        <div class="row header">
-                            <% List<TableHeaderMetaData> headers = TableUIUtil
-                                    .tableHeaders((Class<? extends BaseEntity>) request.getAttribute("class"));
-                                for (int i = 0; i < headers.size(); i++)
-                                {%>
-                            <div class="cell">
-                                <%=headers.get(i).getName()%>
-                            </div>
-                            <%}%>
-                        </div>
-                        <% List<? extends BaseEntity> list = (List<? extends BaseEntity>) request.getAttribute("list");
-                            for (int i = 0; i < list.size(); i++)
-                            {
-                                BaseEntity entity = list.get(i);
-                                String row_class = "row odd";
-                                if (i % 2 == 1)
-                                    row_class = "row even";
-                        %>
-                        <div class="<%=row_class%>">
-                            <%
-                                List<FieldMetaData> fields = FieldMetaDataUtil.createFieldsMetaDataFrom(entity);
-                                for (FieldMetaData field : fields)
-                                {
-                            %>
-                            <div class="cell">
-                                <%= field.getValue()%>
-                            </div>
-                            <% }%>
+        <h1 style="text-align: center; font-size: 25px; margin: 1px;"><%=request.getAttribute("class_name") + " Table"%></h1>
+        <a href="edit">Add</a>
+        <div class="container-table100">
+            <div class="wrap-table100">
+                <div class="table">
+                    <div class="row header">
+                        <% List<TableHeaderMetaData> headers = TableUIUtil.tableHeaders((Class<? extends BaseEntity>) request.getAttribute("class"));
+                            for (int i = 0; i < headers.size(); i++)
+                            {%>
+                        <div class="cell">
+                            <%=headers.get(i).getName()%>
                         </div>
                         <%}%>
+                        <div class="cell">Actions</div>
                     </div>
+                    <% List<? extends BaseEntity> list = (List<? extends BaseEntity>) request.getAttribute("list");
+                        for (int i = 0; i < list.size(); i++)
+                        {
+                            BaseEntity entity = list.get(i);
+                            String row_class = "row odd";
+                            if (i % 2 == 1)
+                                row_class = "row even";
+                    %>
+                    <div class="<%=row_class%>">
+                        <%
+                            List<FieldMetaData> fields = FieldMetaDataUtil.createFieldsMetaDataFrom(entity);
+                            for (FieldMetaData field : fields)
+                            {
+                        %>
+                        <div class="cell">
+                            <%
+                                if (field.getFieldName().equals("Code"))
+                                {
+                            %>
+                            <a href="/edit/entity=<%=field.getValue()%>"></a>
+                            <%
+                            }
+                            else
+                            {
+                            %>
+                            <%= field.getValue()%>
+                            <%}%>
+                        </div>
+                        <% }%>
+                        <div class="cell">
+                            <a href="delete?id=<%=entity.getId()%>&class=<%=request.getAttribute("class_name")%>">Delete</a>
+                        </div>
+                    </div>
+                    <%}%>
                 </div>
             </div>
         </div>
     </div>
-</form>
+    <%}%>
+</div>
 
 </body>
 </html>

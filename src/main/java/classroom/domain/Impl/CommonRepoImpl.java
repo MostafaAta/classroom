@@ -184,4 +184,25 @@ public class CommonRepoImpl<T extends Persistable> implements CommonRepo<T>
 		}
 		return null;
 	}
+
+	@Override
+	public void deleteById(Class<? extends Persistable> klass, Long id) throws Throwable
+	{
+		try
+		{
+			T entity = find(klass, id);
+			if (entity == null)
+				return;
+			Session commonRepo = HibernateDBManager.getCommonRepo();
+			HibernateDBManager.beginTransaction();
+			commonRepo.delete(entity);
+			HibernateDBManager.commitTransaction();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			HibernateDBManager.rollbackTransaction();
+			throw e;
+		}
+	}
 }
