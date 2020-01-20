@@ -79,7 +79,7 @@
                                 if (field.getFieldName().equals("Code"))
                                 {
                             %>
-                            <a href="/edit/entity=<%=field.getValue()%>"></a>
+                            <a href="/edit/entity=<%=entity%>">Code</a>
                             <%
                             }
                             else
