@@ -2,6 +2,7 @@ package classroom.webapp.servlets;
 
 import classroom.dal.roots.*;
 import classroom.domain.test.*;
+import classroom.util.*;
 
 import javax.servlet.*;
 import javax.servlet.annotation.*;
@@ -23,19 +24,32 @@ public class EditEntity extends HttpServlet
 			String idStr = request.getParameter("idStr");
 			String className = request.getParameter("class");
 			BaseEntity entity = null;
-			Class<? extends BaseEntity> klass = ListViewServlet.calculateClassFrom(className);
+			Class<? extends BaseEntity> klass = CommonUtil.calculateClassFrom(className);
 			BusinessLogicCore<? extends BaseEntity> core = BusinessLogicCore.get();
-			if (idStr != null)
-				entity = core.find(klass, Long.parseLong(idStr));
+			Long id = parseId(idStr);
+			if (id != null)
+				entity = core.find(klass, id);
 			if (entity == null)
 				entity = klass.newInstance();
 			request.setAttribute("entity", entity);
-
-			//TODO : switch to edit page
+			request.setAttribute("class_name", entity.getClass().getSimpleName());
+			request.getRequestDispatcher("edit.jsp").forward(request, response);
 		}
 		catch (Throwable e)
 		{
 			e.printStackTrace();
+		}
+	}
+
+	private static Long parseId(String idStr)
+	{
+		try
+		{
+			return Long.parseLong(idStr);
+		}
+		catch (Throwable e)
+		{
+			return null;
 		}
 	}
 }

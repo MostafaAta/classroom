@@ -1,5 +1,6 @@
 <%@ page import="classroom.dal.roots.*" %>
 <%@ page import="classroom.domain.common.*" %>
+<%@ page import="classroom.util.*" %>
 <%@ page import="java.util.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -45,8 +46,11 @@
     %>
     <div class="limiter">
 
-        <h1 style="text-align: center; font-size: 25px; margin: 1px;"><%=request.getAttribute("class_name") + " Table"%></h1>
-        <a href="edit">Add</a>
+        <h1 style="text-align: center; font-size: 25px; margin: 1px;"><%=request.getAttribute("class_name") + " Table"%>
+        </h1>
+        <h1 style="text-align: right; margin-right: 25px"><a
+                href="edit?idStr=<%=CommonUtil.createInstanceFrom(request.getAttribute("class")).getId()%>&class=<%=request.getAttribute("class_name")%>">Add</a>
+        </h1>
         <div class="container-table100">
             <div class="wrap-table100">
                 <div class="table">
@@ -79,7 +83,7 @@
                                 if (field.getFieldName().equals("Code"))
                                 {
                             %>
-                            <a href="/edit/entity=<%=entity%>">Code</a>
+                            <a href="edit?idStr=<%=entity.getId()%>&class=<%=request.getAttribute("class_name")%>">Code</a>
                             <%
                             }
                             else

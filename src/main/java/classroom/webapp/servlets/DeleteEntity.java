@@ -2,6 +2,7 @@ package classroom.webapp.servlets;
 
 import classroom.dal.roots.*;
 import classroom.domain.test.*;
+import classroom.util.*;
 
 import javax.servlet.*;
 import javax.servlet.annotation.*;
@@ -23,7 +24,7 @@ public class DeleteEntity extends HttpServlet
 		try
 		{
 			BusinessLogicCore<? extends BaseEntity> core = BusinessLogicCore.get();
-			Class<? extends BaseEntity> klass = ListViewServlet.calculateClassFrom(request.getParameter("class"));
+			Class<? extends BaseEntity> klass = CommonUtil.calculateClassFrom(request.getParameter("class"));
 			Long id = Long.parseLong(request.getParameter("id"));
 			core.deleteById(klass, id);
 		}
