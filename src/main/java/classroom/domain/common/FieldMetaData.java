@@ -29,6 +29,11 @@ public class FieldMetaData
 		return value;
 	}
 
+	public void setValue(Object value)
+	{
+		this.value = value;
+	}
+
 	public Boolean getShow()
 	{
 		return show;

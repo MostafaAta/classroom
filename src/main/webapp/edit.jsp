@@ -49,10 +49,14 @@
             int fieldsPerRow = 2;
             for (FieldMetaData field : data)
             {
+                if (field.getValue() == null)
+                    field.setValue(" ");
         %>
-        <label style="margin-right: 25px"><%=field.getFieldName()%>
-        </label>
-        <input value="<%=field.getValue()%>" type="text" style="margin-right: 25px"/>
+        <div class="field">
+            <label class="label" style="margin-right: 25px"><%=field.getFieldName()%> :
+            </label>
+            <input class="input" value="<%=field.getValue()%>" type="text" style="margin-right: 25px"/>
+        </div>
         <%
             col++;
             if (col == fieldsPerRow)
