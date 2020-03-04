@@ -7,6 +7,16 @@ public class FieldMetaData
 	private Object value;
 	private Boolean show = true;
 
+	public FieldMetaData()
+	{
+	}
+
+	public FieldMetaData(String fieldName, Object value)
+	{
+		this.fieldName = fieldName;
+		this.value = value;
+	}
+
 	public FieldMetaData(String fieldName, UIFieldType fieldType, Object value)
 	{
 		this.fieldName = fieldName;

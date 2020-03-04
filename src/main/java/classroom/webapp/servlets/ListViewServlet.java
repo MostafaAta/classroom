@@ -10,7 +10,7 @@ import javax.servlet.http.*;
 import java.io.*;
 import java.util.*;
 
-@WebServlet(name = "list_view_servlet")
+@WebServlet(name = "listView")
 public class ListViewServlet extends HttpServlet
 {
 	private Class<? extends BaseEntity> entityClass;

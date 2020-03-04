@@ -41,7 +41,7 @@ public class EditEntity extends HttpServlet
 		}
 	}
 
-	private static Long parseId(String idStr)
+	public static Long parseId(String idStr)
 	{
 		try
 		{

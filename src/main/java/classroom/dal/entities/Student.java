@@ -66,7 +66,7 @@ public class Student extends BaseEntity
 	public void addFieldMetaDataTo(List<FieldMetaData> metaData)
 	{
 		super.addFieldMetaDataTo(metaData);
-		metaData.add(new FieldMetaData("Email", UIFieldType.IntegerNumber, "1.1@1.com"));
+		metaData.add(new FieldMetaData("Email", UIFieldType.IntegerNumber, getEmail()));
 	}
 
 	@Override

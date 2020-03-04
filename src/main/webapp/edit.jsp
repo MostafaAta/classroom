@@ -32,41 +32,53 @@
         <a href="#" class="close" onclick="closeSlideMenu()">
             <i class="fas fa-times"></i>
         </a>
-        <a href="list_view_servlet?class=Student">Student</a>
-        <a href="list_view_servlet?class=Course">Course</a>
-        <a href="list_view_servlet?class=Instructor">Instructors</a>
-        <a href="list_view_servlet?class=CourseLike">Course Likes</a>
-        <a href="list_view_servlet?class=CourseRegistration">Course Registration</a>
-        <a href="list_view_servlet?class=CourseRating">Course Rating</a>
+        <a href="listView?class=Student">Student</a>
+        <a href="listView?class=Course">Course</a>
+        <a href="listView?class=Instructor">Instructors</a>
+        <a href="listView?class=CourseLike">Course Likes</a>
+        <a href="listView?class=CourseRegistration">Course Registration</a>
+        <a href="listView?class=CourseRating">Course Rating</a>
     </div>
     <div>
         <h1 style="text-align: center; font-size: 25px; margin: 1px;"><%=request.getAttribute("class_name") + " Entity"%>
+            <% request.getSession().setAttribute("class", request.getParameter("class"));%>
+            <% request.getSession().setAttribute("idStr", request.getParameter("idStr"));%>
         </h1>
-        <%
-            BaseEntity entity = (BaseEntity) request.getAttribute("entity");
-            List<FieldMetaData> data = FieldMetaDataUtil.createFieldsMetaDataFrom(entity);
-            int col = 0;
-            int fieldsPerRow = 2;
-            for (FieldMetaData field : data)
-            {
-                if (field.getValue() == null)
-                    field.setValue(" ");
-        %>
-        <div class="field">
-            <label class="label" style="margin-right: 25px"><%=field.getFieldName()%> :
-            </label>
-            <input class="input" value="<%=field.getValue()%>" type="text" style="margin-right: 25px"/>
-        </div>
-        <%
-            col++;
-            if (col == fieldsPerRow)
-            {%>
-        <br/>
-        <%
-                    col = 0;
+        <form action="add">
+            <%
+                BaseEntity entity = (BaseEntity) request.getAttribute("entity");
+                List<FieldMetaData> data = FieldMetaDataUtil.createFieldsMetaDataFrom(entity);
+                int col = 0;
+                session.setAttribute("entity", request.getAttribute("entity"));
+                int fieldsPerRow = 2;
+                List<String> filedNames = new ArrayList<>();
+                for (FieldMetaData field : data)
+                {
+                    filedNames.add(field.getFieldName());
+                    if (field.getValue() == null)
+                        field.setValue(" ");
+            %>
+            <div class="field">
+                <label class="label" id="fieldName" for="fieldName" style="margin-right: 25px">
+                    <%=field.getFieldName()%> :
+                </label>
+                <input class="input" name="fieldValue" value="<%=field.getValue()%>" type="text"/>
+            </div>
+            <%
+                col++;
+                if (col == fieldsPerRow)
+                {
+            %>
+            <br/>
+            <%
+                        col = 0;
+                    }
                 }
-            }
-        %>
+                request.getSession().setAttribute("fieldNames", filedNames);
+            %>
+            <input style="font-size: 25px; color: lightseagreen;margin-left: 33px;padding: 5px;" type="submit"
+                   value="Save"/>
+        </form>
     </div>
 </div>
 </body>

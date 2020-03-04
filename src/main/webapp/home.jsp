@@ -33,19 +33,23 @@
         <a href="#" class="close" onclick="closeSlideMenu()">
             <i class="fas fa-times"></i>
         </a>
-        <a href="list_view_servlet?class=Student">Student</a>
-        <a href="list_view_servlet?class=Course">Course</a>
-        <a href="list_view_servlet?class=Instructor">Instructors</a>
-        <a href="list_view_servlet?class=CourseLike">Course Likes</a>
-        <a href="list_view_servlet?class=CourseRegistration">Course Registration</a>
-        <a href="list_view_servlet?class=CourseRating">Course Rating</a>
+        <a href="listView?class=Student">Student</a>
+        <a href="listView?class=Course">Course</a>
+        <a href="listView?class=Instructor">Instructors</a>
+        <a href="listView?class=CourseLike">Course Likes</a>
+        <a href="listView?class=CourseRegistration">Course Registration</a>
+        <a href="listView?class=CourseRating">Course Rating</a>
     </div>
     <%
         if (request.getAttribute("class") != null)
         {
     %>
     <div class="limiter">
-
+        <% if (request.getSession().getAttribute("success") != null) { %>
+        <h1 style="text-align: center; font-size: 25px; margin: 1px; color: red"> Save Entity Id :  <%=request.getSession().getAttribute("success")%>
+        </h1>
+        <% } %>
+        <br>
         <h1 style="text-align: center; font-size: 25px; margin: 1px;"><%=request.getAttribute("class_name") + " Table"%>
         </h1>
         <h1 style="text-align: right; margin-right: 25px"><a
